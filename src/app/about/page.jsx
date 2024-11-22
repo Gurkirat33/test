@@ -4,6 +4,9 @@ import TeamSection from "@/components/UI/TeamSection";
 
 import Image from "next/image";
 
+// Enable ISR with 1-month revalidation (30 days)
+export const revalidate = 2592000;
+
 export default function AboutPage() {
   const stats = [
     { number: "150+", label: "Projects Delivered" },

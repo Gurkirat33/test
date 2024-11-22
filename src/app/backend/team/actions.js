@@ -40,8 +40,8 @@ export async function upsertTeamMember(data) {
     }
 
     // Revalidate both frontend and backend paths
-    revalidatePath("/about");
-    revalidatePath("/backend/team");
+    revalidatePath("/about", "layout");
+    revalidatePath("/backend/team", "layout");
     
     return { success: true };
   } catch (error) {
@@ -56,8 +56,9 @@ export async function deleteTeamMember(id) {
     await teamModel.findByIdAndDelete(id);
     
     // Revalidate both frontend and backend paths
-    revalidatePath("/about");
-    revalidatePath("/backend/team");
+    revalidatePath("/about", "layout");
+    console.log("revalidatePath('/backend/team')");
+    revalidatePath("/backend/team", "layout");
     
     return { success: true };
   } catch (error) {
