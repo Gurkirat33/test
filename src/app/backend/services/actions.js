@@ -63,17 +63,20 @@ export async function getService(id) {
 export async function deleteService(id) {
   try {
     await getDbConnection();
-    const result = await serviceModel.findByIdAndDelete(id);
-    if (!result) {
-      throw new Error("Service not found");
+    const service = await serviceModel.findByIdAndDelete(id);
+    if (!service) {
+      return { error: "Service not found" };
     }
+
+    // Revalidate both the services list and individual service pages
+    revalidatePath("/services");
+    revalidatePath("/services/[slug]", "layout");
     revalidatePath("/backend/services");
-    revalidateTag('services-data');
-    revalidateTag('service-detail');
+
     return { success: true };
   } catch (error) {
     console.error("Error deleting service:", error);
-    throw new Error(error.message || "Failed to delete service");
+    return { error: "Failed to delete service" };
   }
 }
 
@@ -84,7 +87,7 @@ export async function updateService(id, data) {
 
     const errors = validateService(data);
     if (errors.length > 0) {
-      throw new Error(errors.join(", "));
+      return { error: errors.join(", ") };
     }
 
     await getDbConnection();
@@ -120,57 +123,43 @@ export async function updateService(id, data) {
       .lean();
       
     if (!service) {
-      throw new Error("Service not found");
+      return { error: "Service not found" };
     }
 
     console.log("Updated service:", service);
 
+    // Revalidate both the services list and individual service pages
+    revalidatePath("/services");
+    revalidatePath("/services/[slug]", "layout");
     revalidatePath("/backend/services");
-    revalidateTag('services-data');
-    revalidateTag('service-detail');
-    
-    const serializedService = serializeService(service);
-    console.log("Returning serialized service:", serializedService);
-    
-    return { success: true, service: serializedService };
+
+    return { success: true, service: serializeService(service) };
   } catch (error) {
     console.error("Error updating service:", error);
-    throw new Error(error.message || "Failed to update service");
+    return { error: "Failed to update service" };
   }
 }
 
 export async function createService(data) {
   try {
+    await getDbConnection();
     const errors = validateService(data);
     if (errors.length > 0) {
-      throw new Error(errors.join(", "));
+      return { error: errors.join(", ") };
     }
 
-    await getDbConnection();
-    
-    const existingService = await serviceModel.findOne({ slug: data.slug });
-    if (existingService) {
-      throw new Error("URL slug is already taken");
-    }
+    const service = new serviceModel(data);
+    await service.save();
 
-    const createData = {
-      heading: data.heading,
-      description: data.description,
-      longDescription: data.longDescription,
-      imageUrl: data.imageUrl,
-      keyPoints: data.keyPoints,
-      slug: data.slug,
-    };
-
-    const service = await serviceModel.create(createData);
+    // Revalidate both the services list and individual service pages
+    revalidatePath("/services");
+    revalidatePath("/services/[slug]", "layout");
     revalidatePath("/backend/services");
-    revalidateTag('services-data');
-    revalidateTag('service-detail');
-    
-    return { success: true, service: serializeService(service.toObject()) };
+
+    return { success: true };
   } catch (error) {
     console.error("Error creating service:", error);
-    throw new Error(error.message || "Failed to create service");
+    return { error: "Failed to create service" };
   }
 }
 
