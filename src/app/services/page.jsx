@@ -3,9 +3,9 @@ import serviceModel from "@/models/service.model";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { SectionHeading } from "@/components/UI/SectionHeading";
-import { unstable_cache } from 'next/cache';
 
-export const revalidate = 3600;
+// Enable ISR with 1-month revalidation (30 days)
+export const revalidate = 2592000;
 
 const serializeService = (service) => ({
   id: service._id.toString(),
@@ -16,23 +16,16 @@ const serializeService = (service) => ({
   slug: service.slug || "",
 });
 
-const getServices = unstable_cache(
-  async () => {
-    try {
-      await getDbConnection();
-      const services = await serviceModel.find({}).lean();
-      return services.map(serializeService);
-    } catch (error) {
-      console.error("Error fetching services:", error);
-      return [];
-    }
-  },
-  ['services-data'],
-  {
-    revalidate: 3600,
-    tags: ['services-data']
+async function getServices() {
+  try {
+    await getDbConnection();
+    const services = await serviceModel.find({}).lean();
+    return services.map(serializeService);
+  } catch (error) {
+    console.error("Error fetching services:", error);
+    return [];
   }
-);
+}
 
 export default async function ServicesPage() {
   const services = await getServices();

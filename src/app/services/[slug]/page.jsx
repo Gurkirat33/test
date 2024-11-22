@@ -4,57 +4,51 @@ import { servicesData } from "@/data/services";
 import { notFound } from "next/navigation";
 import { getDbConnection } from "@/lib/auth";
 import serviceModel from "@/models/service.model";
-import { unstable_cache } from 'next/cache';
 import Image from "next/image";
 import ServicesSidebar from "@/components/UI/ServicesSidebar";
 
-export const revalidate = 3600;
+// Enable ISR with 1-month revalidation (30 days)
+export const revalidate = 2592000;
 
-const getServiceBySlug = unstable_cache(
-  async (slug) => {
-    try {
-      await getDbConnection();
-      const service = await serviceModel.findOne({ slug }).lean();
-      if (!service) return null;
-      
-      return {
-        id: service._id.toString(),
-        longDescription: service.longDescription || "",
-        imageUrl: service.imageUrl || "",
-      };
-    } catch (error) {
-      console.error("Error fetching service:", error);
-      return null;
-    }
-  },
-  ['service-detail'],
-  {
-    revalidate: 3600,
-    tags: ['service-detail']
+async function getServiceBySlug(slug) {
+  try {
+    await getDbConnection();
+    const service = await serviceModel.findOne({ slug }).lean();
+    if (!service) return null;
+    
+    return {
+      id: service._id.toString(),
+      longDescription: service.longDescription || "",
+      imageUrl: service.imageUrl || "",
+    };
+  } catch (error) {
+    console.error("Error fetching service:", error);
+    return null;
   }
-);
+}
 
-const getAllServices = unstable_cache(
-  async () => {
-    try {
-      await getDbConnection();
-      const services = await serviceModel.find({}, 'heading slug').lean();
-      return services.map(service => ({
-        id: service._id.toString(),
-        heading: service.heading || "",
-        slug: service.slug || "",
-      }));
-    } catch (error) {
-      console.error("Error fetching services:", error);
-      return [];
-    }
-  },
-  ['services-list'],
-  {
-    revalidate: 3600,
-    tags: ['services-data']
+async function getAllServices() {
+  try {
+    await getDbConnection();
+    const services = await serviceModel.find({}, 'heading slug').lean();
+    return services.map(service => ({
+      id: service._id.toString(),
+      heading: service.heading || "",
+      slug: service.slug || "",
+    }));
+  } catch (error) {
+    console.error("Error fetching services:", error);
+    return [];
   }
-);
+}
+
+// Generate static params for all services
+export async function generateStaticParams() {
+  const services = await getAllServices();
+  return services.map((service) => ({
+    slug: service.slug,
+  }));
+}
 
 export default async function ServicePage({ params }) {
   const { slug } = params;

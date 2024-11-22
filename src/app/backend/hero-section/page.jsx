@@ -1,40 +1,13 @@
-"use client";
+"use server";
 
 import { Plus, Pencil, Trash } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import { getHeroSection, deleteHeroSection } from "./actions";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
-export default function Page() {
-  const [heroSections, setHeroSections] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetchHeroSections();
-  }, []);
-
-  const fetchHeroSections = async () => {
-    try {
-      const data = await getHeroSection();
-      setHeroSections(data || []);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleDelete = async (id) => {
-    if (window.confirm("Are you sure you want to delete this hero section?")) {
-      try {
-        await deleteHeroSection(id);
-        await fetchHeroSections();
-      } catch (error) {
-        console.error(error);
-      }
-    }
-  };
+export default async function HeroSectionPage() {
+  const heroSections = await getHeroSection();
 
   return (
     <div className="mx-auto max-w-7xl p-4">
@@ -54,9 +27,7 @@ export default function Page() {
         </Link>
       </div>
 
-      {loading ? (
-        <div className="text-center py-4">Loading...</div>
-      ) : heroSections.length === 0 ? (
+      {!heroSections?.length ? (
         <div className="text-center py-4">No hero sections found</div>
       ) : (
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -89,7 +60,16 @@ export default function Page() {
                   Edit
                 </Link>
                 <button
-                  onClick={() => handleDelete(hero._id)}
+                  onClick={async () => {
+                    if (confirm("Are you sure you want to delete this hero section?")) {
+                      try {
+                        await deleteHeroSection(hero._id);
+                        useRouter().refresh();
+                      } catch (error) {
+                        console.error(error);
+                      }
+                    }
+                  }}
                   className="inline-flex items-center gap-1 rounded bg-red-500 px-3 py-1.5 text-sm text-white hover:bg-red-600"
                 >
                   <Trash className="size-4" />

@@ -1,22 +1,14 @@
 import { getHeroSection } from "@/app/backend/hero-section/actions";
 import HeroSectionClient from "./HeroSectionClient";
 import BrowserForImages from "./Browsers/BrowserForImages";
-import { unstable_cache } from 'next/cache';
 
-const getHeroData = unstable_cache(
-  async () => {
-    const data = await getHeroSection();
-    return data.map(hero => ({
-      ...hero,
-      _id: hero._id.toString()
-    }));
-  },
-  ['hero-data'],
-  {
-    revalidate: 3600,
-    tags: ['hero-data']
-  }
-);
+async function getHeroData() {
+  const data = await getHeroSection();
+  return data.map(hero => ({
+    ...hero,
+    _id: hero._id.toString()
+  }));
+}
 
 export default async function HeroSection() {
   const heroData = await getHeroData();
