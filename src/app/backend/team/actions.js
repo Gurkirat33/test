@@ -39,7 +39,10 @@ export async function upsertTeamMember(data) {
       await teamModel.findByIdAndUpdate(data.id, memberData);
     }
 
+    // Revalidate both frontend and backend paths
+    revalidatePath("/about");
     revalidatePath("/backend/team");
+    
     return { success: true };
   } catch (error) {
     console.error("Error upserting team member:", error);
@@ -51,7 +54,11 @@ export async function deleteTeamMember(id) {
   try {
     await getDbConnection();
     await teamModel.findByIdAndDelete(id);
+    
+    // Revalidate both frontend and backend paths
+    revalidatePath("/team");
     revalidatePath("/backend/team");
+    
     return { success: true };
   } catch (error) {
     console.error("Error deleting team member:", error);
