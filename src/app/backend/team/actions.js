@@ -56,7 +56,7 @@ export async function deleteTeamMember(id) {
     await teamModel.findByIdAndDelete(id);
     
     // Revalidate both frontend and backend paths
-    revalidatePath("/team");
+    revalidatePath("/about");
     revalidatePath("/backend/team");
     
     return { success: true };
