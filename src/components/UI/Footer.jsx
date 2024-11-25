@@ -8,8 +8,13 @@ import {
   UsaFlagSvg,
 } from "../data/FooterData";
 import { Heart, Mail, PhoneCall } from "lucide-react";
+import Logo from "@/images/Giftechies-Logo-light-mode.svg";
+import darkLogo from "@/images/Giftechies-Logo-dark-mode.svg";
+import Image from "next/image";
 
 const Footer = () => {
+  const darkMode = true;
+  const isDarkMode = true;
   const date = new Date().getFullYear();
   return (
     <footer className="overflow-x-hidden relative bg-primary px-4 pb-8 pt-28 text-secondary sm:px-8">
@@ -29,22 +34,16 @@ const Footer = () => {
 
         <div className="grid grid-cols-12 gap-12 pr-1 sm:pl-14 sm:pr-8 lg:pl-20 lg:pr-12 xl:gap-2
          xl:pl-20 xl:pr-16">
-          <div className="col-span-12 flex flex-col gap-6 pl-14 sm:pl-0 md:col-span-6 lg:order-1 lg:col-span-3">
-            <img src="https://giftechies.com/frontend/assets/images/cup-man.gif" alt="" className="size-36"/>
-            {/* <p className="text-3xl font-semibold lg:text-4xl">
-              Do you like <br /> what you see?
-            </p> */}
-            <h4 className="text-2xl">Ready? Let’s Talk
+          <div className="col-span-12 flex flex-col  pl-14 sm:pl-0 md:col-span-6 lg:order-1 lg:col-span-3">
+            <img src="/footer-dark.svg" alt="" className="h-44 w-52 footer-logo-filters "/>
+            <h4 className="text-2xl mb-6 text-secondary-light">Ready? Let’s Talk
             </h4>
-            {/* <p className="text-xs tracking-wide">Our clients love to work with us because we strive to first meet their requirements and then exceed their expectations.
-
-</p> */}
             <div className="flex gap-4">
             <button className="gradient-color w-fit  px-4 py-2 text-tertiary-text">
-           Best Work
+            Hire Me !
             </button>
             <button className="w-fit border border-border bg-primary  px-4 py-2 text-secondary">
-              Start Project
+            Best Work
             </button>
             </div>
           </div>

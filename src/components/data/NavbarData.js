@@ -4,31 +4,31 @@ export const navData = [
     href: "/",
   },
   {
-    name: "Services",
-    href: "/services",
+    name: "About",
+    href: "/about",
   },
   {
-    name: "Work",
-    href: "/work",
+    name: "Services",
+    href: "/services",
     submenu: {
       items: [
         {
-          title: "Case Studies",
+          title: "Mobile Development",
           description: "Explore our successful projects",
           href: "/",
         },
         {
-          title: "Portfolio",
+          title: "Web Development",
           description: "Browse our latest work",
           href: "/",
         },
         {
-          title: "Blogs",
+          title: "UX/UI & Web Design",
           description: "Read our latest blog posts",
           href: "/",
         },
         {
-          title: "Client Testimonials",
+          title: "WordPress Development",
           description: "See what our clients have to say",
           href: "/",
         },
@@ -45,10 +45,7 @@ export const navData = [
     name: "Portfolio",
     href: "/portfolio",
   },
-  {
-    name: "About",
-    href: "/about",
-  },
+
   {
     name: "Contact",
     href: "/contact",

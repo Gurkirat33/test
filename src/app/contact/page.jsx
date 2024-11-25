@@ -103,11 +103,13 @@ const ContactPage = () => {
         </div>
       </div>
     </div>
-    <div className="flex">
+    <div className="flex w-full gap-12 mt-12">
       <div className="flex-1">
-      {/* <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3424.898502032196!2d75.85647407528319!3d30.861516579397783!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391a828f446c36cb%3A0x732e6bc33a024690!2sPC%20Tower!5e0!3m2!1sen!2sin!4v1732516702036!5m2!1sen!2sin" width="600" height="450" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> */}
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3424.898502032196!2d75.85647407528319!3d30.861516579397783!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391a828f446c36cb%3A0x732e6bc33a024690!2sPC%20Tower!5e0!3m2!1sen!2sin!4v1732516702036!5m2!1sen!2sin" style={{width:"100%",border:"none"}} height="450" allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
       </div>
-      <div className="flex-1"></div>
+      <div className="flex-1">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2963.8544102444757!2d-88.11029322422385!3d42.024855556213446!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fa8dfa56a1c31%3A0x78acd517f46ab059!2s1111%20Charlene%20Ln%2C%20Schaumburg%2C%20IL%2060193%2C%20USA!5e0!3m2!1sen!2sin!4v1732528063251!5m2!1sen!2sin" style={{width:"100%",border:"none"}} height="450"  allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+      </div>
     </div>
     </>
   );

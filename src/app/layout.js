@@ -4,7 +4,7 @@ import FooterComponent from "@/components/UI/FooterComponent";
 import { Poppins } from 'next/font/google'
 
 export const metadata = {
-  title: "Agency Website",
+  title: "Web development company: Giftechies",
   description: "Created by Gurkirat Singh",
 };
 

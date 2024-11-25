@@ -162,4 +162,8 @@
   .light .svg-color-mode {
     @apply [filter:brightness(0)_saturate(100%)];
   }
+
+  .dark .footer-logo-filter{
+    @apply [filter:brightness(50)_saturate(0%)];
+  }
 }

@@ -3,7 +3,7 @@ import TestimonialsSection from "@/components/UI/Testimonials";
 import Services from "@/components/UI/Services";
 // import FAQ from "@/components/UI/Faq";
 import BentoGrid from "@/components/UI/BentoGrid";
-import BlogSection from "@/components/UI/Blog";
+// import BlogSection from "@/components/UI/Blog";
 import ScrollingBanner from "@/components/ScrollingBanner";
 import BgGrid from "@/components/UI/BgGrid";
 
@@ -17,7 +17,7 @@ export default function Home() {
     </div>
       <Services />
       <TestimonialsSection />
-      <BlogSection />
+      {/* <BlogSection /> */}
       {/* <FAQ /> */}
       <ScrollingBanner />
     </>
