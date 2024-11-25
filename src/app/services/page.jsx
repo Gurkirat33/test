@@ -4,7 +4,6 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { SectionHeading } from "@/components/UI/SectionHeading";
 
-// Enable ISR with 1-month revalidation (30 days)
 export const revalidate = 2592000;
 
 const serializeService = (service) => ({
@@ -31,7 +30,7 @@ export default async function ServicesPage() {
   const services = await getServices();
 
   return (
-    <div className="relative bg-primary py-20">
+    <div className="relative bg-primary pt-[72px]">
         <SectionHeading 
           title="Services that drive growth" 
           description="We deliver cutting-edge solutions that transform businesses. Our expertise spans across digital landscapes, ensuring your success in the modern market." 

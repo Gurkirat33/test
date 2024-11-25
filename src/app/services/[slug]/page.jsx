@@ -7,7 +7,6 @@ import serviceModel from "@/models/service.model";
 import Image from "next/image";
 import ServicesSidebar from "@/components/UI/ServicesSidebar";
 
-// Enable ISR with 1-month revalidation (30 days)
 export const revalidate = 2592000;
 
 async function getServiceBySlug(slug) {
@@ -42,7 +41,6 @@ async function getAllServices() {
   }
 }
 
-// Generate static params for all services
 export async function generateStaticParams() {
   const services = await getAllServices();
   return services.map((service) => ({
@@ -62,7 +60,7 @@ export default async function ServicePage({ params }) {
   }
 
   return (
-    <div className="pt-20">
+    <div className="pt-[72px]">
       <Breadcrumb/>
       <div className="section-container">
         <div className="flex flex-col lg:flex-row gap-8">

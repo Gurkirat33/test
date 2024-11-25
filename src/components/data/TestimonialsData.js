@@ -1,89 +1,80 @@
 export const testimonials = [
   [
     {
-      name: "Sarah Chen",
-      role: "Senior Product Designer",
-      company: "Adobe Systems",
+      name: "Sukhwinder Singh",
+      location: "USA",
       image:
-        "/review1.jpeg",
+        "/user.png",
       content:
-        "This tool has completely transformed how our team approaches design systems. The ability to seamlessly integrate with our.",
+        "Just thought I should send my thanks for the time and efforts all of you have been putting to create my business appealing and engaging. The work has been outstanding and the website looks amazing and you all should know it.",
     },
     {
-      name: "Alex Rivera",
-      role: "Lead Frontend Engineer",
-      company: "Spotify",
+      name: "K S Ranu",
+      location: "Hong Kong",
       image:
-        "/review2.jpeg",
+        "/user.png",
       content:
-        "As someone who's worked with numerous development tools over the past decade, this platform stands out for its exceptional attention to detail and developer experience.",
+        "It was a pleasure working with Giftechies.Communication was quick and easy. Our experience with designing was also great. Highly recommended.",
     },
     {
-      name: "Maya Patel",
-      role: "Director of UX",
-      company: "Microsoft",
+      name: "Harpreet Rattan",
+      location: "New Zealand",
       image:
-        "/review3.jpeg",
+        "/user.png",
       content:
-        "The level of innovation in this tool is unprecedented. We've been able to reduce our design-to-development handoff time by 60%. The intelligent design tokens system",
+        "It was a right decision to offer our project to Giftechies. They took time to understand the project and completed our website and we got 100% what we had expected, in fact we got even more than that. Customer service is excellent with very quick response to any of our query.",
     },
   ],
   [
     {
-      name: "James Wilson",
-      role: "Technical Architect",
-      company: "Airbnb",
+      name: "Neil Sinha",
+      location: "USA",
       image:
-        "/review4.jpeg",
+        "/user.png",
       content:
-        "This platform has revolutionized how we approach our development pipeline. The integrated testing tools and performance optimization features.",
+        "Working with Giftechies has been a great experience for us. It was the first time we outsourced our development-related work to India, but they exceeded all our expectations and we’ll definitely like to see your team on our next advancements and projects.",
     },
     {
-      name: "Emma Thompson",
-      role: "Creative Director",
-      company: "Netflix",
+      name: "Emily Carter",
+      location: "Canada",
       image:
-        "/review1.jpeg",
+        "/user.png",
       content:
-        "We've tried many tools in our creative process, but nothing comes close to the versatility and power of this platform.",
+        "Giftechies did an amazing job with our e-commerce platform. Their detail and innovative approach helped us really stand out. The team was professional, responsive, and always ready to assist with any concerns.",
     },
     {
-      name: "David Kim",
-      role: "VP of Engineering",
-      company: "Stripe",
+      name: "John Marshall",
+      location: "Australia",
       image:
-        "/review2.jpeg",
+        "/user.png",
       content:
-        "The impact on our development workflow has been extraordinary. The automated documentation generation and component library management.",
+        "I could not have asked for a better team to work with. Giftechies far exceeded my expectations in delivering a beautifully functional website that already draws lots of new customers. It is highly recommended.",
     },
   ],
   [
     {
-      name: "Lisa Johnson",
-      role: "Design Systems Lead",
-      company: "Figma",
+      name: "Riya Kapoor",
+      location: "United Kingdom",
       image:
-        "/review3.jpeg",
+        "/user.png",
       content:
-        "Managing design systems at scale has never been easier. The automated consistency checks and component evolution tracking have .",
+        "From the very first conversation, it was clear that Giftechies understood our vision and executed with precision. Throughout the journey, they provided excellent support and were very open to our feedback. Overall, our website is faster, cleaner, and easier to use than ever.",
     },
     {
-      name: "Marcus Zhang",
-      role: "Principal UI Engineer",
-      company: "Meta",
+      name: "Daniel",
+      location: "Ireland",
       image:
-        "/review4.jpeg",
+        "/user.png",
       content:
-        "The developer experience is unmatched. From the intelligent code completion to the automated accessibility testing, every feature feels thoughtfully designed.",
+        "Collaborating with Giftechies was an excellent experience; their team was knowledgeable, creative, and always on time. We are very happy with the new website and look forward to working with them again in the future.",
     },
     {
-      name: "Rachel Moore",
-      role: "Product Director",
-      company: "Amazon",
+      name: "Aisha Mohammed",
+      location: "UAE",
       image:
-        "/review1.jpeg",
+        "/user.png",
       content:
-        "This tool has become the backbone of our product development process. The insights provided by the analytics dashboard and the automated user flow.",
+        "The team at Giftechies would go to the extreme to ensure that our project becomes a success. Their skills and the customer-first approach made everything a seamlessness affair, and the final product was more than we could have wished for!",
     },
   ],
 ];

@@ -4,7 +4,6 @@ import TeamSection from "@/components/UI/TeamSection";
 
 import Image from "next/image";
 
-// Enable ISR with 1-month revalidation (30 days)
 export const revalidate = 2592000;
 
 export default function AboutPage() {
@@ -21,7 +20,7 @@ export default function AboutPage() {
   ];
 
   return (
-    <div className="bg-primary text-secondary pt-20">
+    <div className="bg-primary text-secondary pt-[72px]">
         <SectionHeading title={"Where Innovation Meets Excellence"} description={"We provide comprehensive digital solutions, from web design and development to marketing and branding, helping businesses thrive in the digital world."}/> 
       <div className="section-container">
 
@@ -65,7 +64,7 @@ export default function AboutPage() {
                 <h4 className="mb-3 text-sm lg:text-base font-semibold gradient-color-text">
                   Why Choose Us
                 </h4>
-                <h2 className="mb-8 text-4xl font-semibold text-secondary">
+                <h2 className="mb-8 text-3xl md:text-4xl font-semibold text-secondary">
                   Crafting Digital Excellence with Innovation and Precision
                 </h2>
 
@@ -91,7 +90,7 @@ We understand the importance of portrayal of digital images and come up with som
                   {features.map((feature, index) => (
                     <p
                       key={index}
-                      className="rounded-lg font-medium bg-primary-light px-6 py-3 text-secondary"
+                      className="rounded-lg font-medium text-sm md:text-base bg-primary-light px-3 md:px-6 py-3 text-secondary"
                     >
                       {feature.title}
                     </p>

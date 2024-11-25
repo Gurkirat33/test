@@ -1,12 +1,12 @@
 import React from "react";
-import { Phone, Mail, MapPin, Globe, Clock } from "lucide-react";
+import { Phone, Mail, MapPin, Clock } from "lucide-react";
 
 const ScrollingBanner = () => {
   const contactItems = [
-    { icon: Phone, text: "Call us: +91 12345-67890" },
-    { icon: Mail, text: "Email: hello@example.com" },
+    { icon: Phone, text: "Call us: +91 95920 00818" },
+    { icon: Mail, text: "Email: info@giftechies.com" },
     { icon: MapPin, text: "123 Business Street, City, Country" },
-    { icon: Globe, text: "www.giftechies.com" },
+    { icon: Phone, text: "+1 (630) 523-0006" },
     { icon: Clock, text: "Mon-Fri: 9AM-6PM" },
   ];
 

@@ -43,7 +43,7 @@ const Footer = () => {
             <button className="gradient-color w-fit  px-4 py-2 text-tertiary-text">
            Best Work
             </button>
-            <button className="w-fit border border-gray-300 bg-white  px-4 py-2 text-secondary">
+            <button className="w-fit border border-border bg-primary  px-4 py-2 text-secondary">
               Start Project
             </button>
             </div>

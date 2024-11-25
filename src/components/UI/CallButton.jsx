@@ -22,7 +22,7 @@ export const CallButton = () => {
         <>
             <button
                 onClick={() => setOpenModal(true)}
-                className="inline-flex items-center gap-2 mt-2 lg:mt-0 bg-white text-black font-medium border border-white px-4 py-2 text-sm"
+                className="inline-flex items-center gap-2 mt-2 lg:mt-0 bg-white text-black font-medium border border-white px-4 py-2 sm:text-sm text-xs"
             >
                 <PhoneCall size={15} /> Request a Call
             </button>

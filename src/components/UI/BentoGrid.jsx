@@ -25,13 +25,13 @@ export default function BentoGrid() {
           className="scale-[0.8]"
         />
       </Link>
-      <div className="section-container grid grid-cols-1 md:grid-cols-4 grid-rows-4 gap-4 lg:gap-6">
+      <div className="section-container flex flex-col md:grid grid-cols-1 md:grid-cols-4 grid-rows-4 gap-4 lg:gap-6">
         {gridData.map((item, index) => {
           if (item.isSpecial) {
             return (
               <div
                 key={index}
-                className={`${getGridClasses(index)} rounded-lg p-10 text-tertiary-text relative`}
+                className={`${getGridClasses(index)} rounded-lg px-4 py-6 md:p-10 text-tertiary-text relative`}
               >
                 <p className="mt-4 text-lg tracking-widest">{item.title}</p>
                 <h3 className="text-center  text-2xl lg:text-4xl font-semibold tracking-wide">
@@ -42,7 +42,7 @@ export default function BentoGrid() {
 </p>
                 <MoveDown className="animate-bounce" />
                 <div className="flex gap-4">
-                <Link href="/services" className="inline-flex items-center gap-2 mt-2 lg:mt-0  border border-white font-medium px-4 py-2 text-sm">
+                <Link href="/services" className="inline-flex px-2 items-center gap-2 mt-2 lg:mt-0  border border-white font-medium md:px-4 py-2 text-xs sm:text-sm">
                   View All Services 
                 </Link>
                 <CallButton/>

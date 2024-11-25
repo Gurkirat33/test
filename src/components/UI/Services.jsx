@@ -157,7 +157,7 @@ const ServicesTimeline = () => {
         slidesPerView={1}
         speed={800}
       >
-        {services.map((service) => (
+        {services.map((service,index) => (
           <SwiperSlide key={service.id}>
             <div className="relative h-full w-full">
               <div className="absolute bg-black md:bg-transparent inset-0 z-10 md:bg-gradient-to-r md:from-black/60 md:via-black/10 md:to-black/60" />
@@ -168,13 +168,20 @@ const ServicesTimeline = () => {
                 className="hidden md:block absolute inset-0 h-full w-full object-cover"
               />
 
-              <div className="absolute inset-0 z-20 flex items-center  md:top-[14%]">
+              <div className="absolute inset-0 z-20 flex items-center">
                 <div className="md:w-[50%] pl-[5%] lg:pl-[3%] xl:pl-[10%] pr-8">
             
-                  <div className="space-y-5">
-                    <h2 className="text-3xl xl:text-4xl font-semibold leading-tight text-white">
-                      {service.name}
-                    </h2>
+                  <div className="space-y-8">
+                    <div className="relative z-20 flex h-full flex-col justify-end py-6 sm:py-10">
+                      <div className="flex items-center gap-6 relative">
+                        <span className="absolute -left-4 -top-20 text-[200px] font-bold leading-none text-white opacity-10 hidden md:block">
+                          {(index + 1).toString().padStart(2, '0')}
+                        </span>
+                        <h2 className="text-3xl xl:text-4xl font-semibold leading-tight text-white">
+                          {service.name}
+                        </h2>
+                      </div>
+                    </div>
                     {/* <p className="text-gray-200 font-medium text-sm  rounded-full w-fit">{service.tagline}</p> */}
                     <p className="max-w-2xl  text-[15px] tracking-[1px] leading-relaxed text-gray-200">
                       {service.description}

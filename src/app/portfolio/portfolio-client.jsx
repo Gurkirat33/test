@@ -141,7 +141,7 @@ function PortfolioGrid({ portfolioData }) {
 
 export default function PortfolioClient({ portfolioData }) {
   return (
-    <div className="bg-primary py-20">
+    <div className="bg-primary pt-[72px]">
         <SectionHeading 
           title={"Some of our selected work"} 
           description={"We have delivered 200+ projects in last 4-5 years. Only few projects are being displayed here."}

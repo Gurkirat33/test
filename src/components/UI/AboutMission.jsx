@@ -5,25 +5,25 @@ export default function AboutMission() {
     return (
      
         <section className="w-full py-24">
-          <div className="section-container">
-            <div className="grid grid-cols-12 gap-8">
-              <div className="relative col-span-4">
-                <div className="sticky top-32 space-y-8">
+          <div>
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
+              <div className="relative col-span-1 md:col-span-4">
+                <div className="md:sticky md:top-32 space-y-8">
                   <div className="relative">
-                    <span className="text-[200px] font-bold leading-none text-secondary opacity-10">
+                    <span className="text-[120px] md:text-[150px] lg:text-[200px] font-bold leading-none text-secondary opacity-10">
                       13
                     </span>
                     <div className="absolute left-0 top-1/2 -translate-y-1/2 text-secondary">
-                      <span className="text-xl font-medium">Years of</span>
+                      <span className="text-lg md:text-xl font-medium">Years of</span>
                       <br />
-                      <span className="text-3xl font-bold">Excellence</span>
+                      <span className="text-2xl md:text-3xl font-bold">Excellence</span>
                     </div>
                   </div>
 
                   <div className="space-y-4 pl-2">
                     <div className="flex items-center space-x-4">
-                      <div className="flex size-16 items-center justify-center rounded-full bg-primary-light">
-                        <span className="text-lg font-semibold text-secondary">
+                      <div className="flex size-12 md:size-16 items-center justify-center rounded-full bg-primary-light">
+                        <span className="text-base md:text-lg font-semibold text-secondary">
                           300+
                         </span>
                       </div>
@@ -32,8 +32,8 @@ export default function AboutMission() {
                       </p>
                     </div>
                     <div className="flex items-center space-x-4">
-                      <div className="flex size-16 items-center justify-center rounded-full bg-primary-light">
-                        <span className="text-lg font-semibold text-secondary">
+                      <div className="flex size-12 md:size-16 items-center justify-center rounded-full bg-primary-light">
+                        <span className="text-base md:text-lg font-semibold text-secondary">
                           50+
                         </span>
                       </div>
@@ -42,8 +42,8 @@ export default function AboutMission() {
                       </p>
                     </div>
                     <div className="flex items-center space-x-4">
-                      <div className="flex size-16 items-center justify-center rounded-full bg-primary-light">
-                        <span className="text-lg font-semibold text-secondary">
+                      <div className="flex size-12 md:size-16 items-center justify-center rounded-full bg-primary-light">
+                        <span className="text-base md:text-lg font-semibold text-secondary">
                           98%
                         </span>
                       </div>
@@ -55,13 +55,13 @@ export default function AboutMission() {
                 </div>
               </div>
 
-              <div className="col-span-8">
-                <div className="space-y-24">
+              <div className="col-span-1 md:col-span-8">
+                <div className="space-y-12 md:space-y-24">
                   {storyContent.map((content, index) => (
                     <div key={index} className="group relative">
                       <div className="relative">
-                        <div className="grid grid-cols-12 gap-6">
-                          <div className="col-span-5">
+                        <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+                          <div className="col-span-1 md:col-span-5">
                             <div className="relative aspect-[4/3] overflow-hidden rounded-xl">
                               <Image
                                 src={content.image}
@@ -72,22 +72,22 @@ export default function AboutMission() {
                             </div>
                           </div>
 
-                          <div className="col-span-7">
-                            <div className="absolute -left-4 top-0 h-full w-[2px]">
+                          <div className="col-span-1 md:col-span-7">
+                            <div className="hidden md:block absolute -left-4 top-0 h-full w-[2px]">
                               <div className="h-full w-full bg-border/40" />
                               <div className="absolute left-1/2 top-0 h-3 w-3 -translate-x-1/2 rounded-full bg-border/60" />
                             </div>
 
-                            <div className="pl-8">
+                            <div className="pl-4 lg:pl-8">
                               <div className="inline-block">
-                                <h3 className="relative mb-4 text-2xl font-bold text-secondary">
+                                <h3 className="relative mb-4 text-lg md:text-xl lg:text-2xl font-bold text-secondary">
                                   {content.title}
                                   <div className="absolute bottom-0 left-0 -mb-1 h-[1px] w-full bg-border/20" />
                                 </h3>
                               </div>
 
                               <div className="relative">
-                                <p className="text-base leading-relaxed text-secondary-light">
+                                <p className="description-text">
                                   {content.description}
                                 </p>
                               </div>

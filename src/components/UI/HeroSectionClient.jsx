@@ -55,11 +55,11 @@ export default function HeroSectionClient({ heroData }) {
           <div className="mb-12 flex gap-2 sm:gap-4  sm:space-y-0">
             <Link 
               href={currentHero.serviceUrl}
-              className="gradient-color inline-flex items-center justify-center w-full  px-2 sm:px-4 py-3 md:px-8 md:py-4 font-bold text-tertiary-text sm:w-auto"
+              className="gradient-color inline-flex items-center justify-center w-full  px-2 sm:px-4 py-3 md:px-8 md:py-4 font-bold text-sm sm:text-base text-tertiary-text sm:w-auto"
             >
               {currentHero.serviceName}
             </Link>
-            <Link href={"/contact"} className="block w-full border border-border px-2 sm:px-4 py-3 md:px-8 md:py-4 font-semibold sm:w-auto text-center">
+            <Link href={"/contact"} className="block w-full border border-border px-2 sm:px-4 py-3 md:px-8 md:py-4 font-semibold text-sm sm:text-base sm:w-auto text-center">
               Book Appointment
             </Link>
           </div>

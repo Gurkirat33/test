@@ -21,7 +21,7 @@ const TestimonialCard = ({ testimonial }) => (
         <h4 className="text-base font-medium text-secondary">
           {testimonial.name}
         </h4>
-        <p className="mb-1 text-sm text-secondary-light">{testimonial.role}</p>
+        <p className="mb-1 text-sm text-secondary-light">{testimonial.location}</p>
       </div>
     </div>
   </div>

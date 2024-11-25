@@ -172,7 +172,7 @@ const Navbar = () => {
                 Start a project <MoveRight className="ml-2 " size={20}/>
               </Link>
               <button
-                className="gradient-color  p-2 text-secondary lg:hidden  px-6 sm:pl-0 sm:pr-0 h-full"
+                className="gradient-color  p-2 text-secondary lg:hidden  px-6 lg:px-0  h-full"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               >
                 <Menu size={21} className="text-white"/>

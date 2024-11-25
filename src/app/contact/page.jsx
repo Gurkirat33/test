@@ -1,5 +1,6 @@
 import React from "react";
 import { Phone, Mail, MapPin } from "lucide-react";
+import Breadcrumb from "@/components/UI/Breadcrumb";
 
 const contactData = [
   {
@@ -21,7 +22,11 @@ const contactData = [
 
 const ContactPage = () => {
   return (
-    <div className="flex min-h-screen items-center bg-primary p-8 py-32 text-secondary">
+    <>
+    <div className="pt-[72px]">
+      <Breadcrumb />
+    </div>
+    <div className="flex items-center bg-primary text-secondary">
       <div className="grid w-full section-container grid-cols-1 gap-12 lg:grid-cols-2">
         <div className="my-auto space-y-8">
           <div>
@@ -98,6 +103,13 @@ const ContactPage = () => {
         </div>
       </div>
     </div>
+    <div className="flex">
+      <div className="flex-1">
+      {/* <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3424.898502032196!2d75.85647407528319!3d30.861516579397783!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391a828f446c36cb%3A0x732e6bc33a024690!2sPC%20Tower!5e0!3m2!1sen!2sin!4v1732516702036!5m2!1sen!2sin" width="600" height="450" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> */}
+      </div>
+      <div className="flex-1"></div>
+    </div>
+    </>
   );
 };
 
