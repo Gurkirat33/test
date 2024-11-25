@@ -64,7 +64,9 @@ export async function upsertTeamMember(data) {
       });
     }
 
-    revalidatePath("/backend/team");
+    revalidatePath("/about","layout");
+    revalidatePath("/backend/team","layout");
+    
     return { success: true };
   } catch (error) {
     console.error("Error upserting team member:", error);
