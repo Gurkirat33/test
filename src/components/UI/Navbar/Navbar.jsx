@@ -176,7 +176,9 @@ const Navbar = () => {
                               {item.submenu.preview.description}
                             </p> */}
                             <div className="rounded-xl overflow-hidden mt-3">
-                              <img
+                              <Image
+                                width={200} 
+                                height={200}
                                 src={item.submenu.preview.image}
                                 alt={item.submenu.preview.title}
                                 className="h-36 w-full object-cover"

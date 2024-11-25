@@ -5,6 +5,7 @@ import { uploadToCloudinary } from "@/utils/uploadImage";
 import { Upload } from "lucide-react";
 import { createHeroSection } from "./actions";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function HeroForm() {
   const router = useRouter();
@@ -213,7 +214,9 @@ export default function HeroForm() {
           <div className="grid grid-cols-2 gap-4">
             {images.map((img, idx) => (
               <div key={idx} className="aspect-video bg-gray-100 rounded-lg overflow-hidden">
-                <img
+                <Image
+                width={200}
+                height={200}
                   src={URL.createObjectURL(img)}
                   alt={`Preview ${idx + 1}`}
                   className="w-full h-full object-cover"

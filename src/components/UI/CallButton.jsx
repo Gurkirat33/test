@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { PhoneCall, X } from "lucide-react";
+import Image from "next/image";
 
 export const CallButton = () => {
     const [openModal, setOpenModal] = useState(false);
@@ -39,7 +40,9 @@ export const CallButton = () => {
 
                         <div className="flex flex-col md:flex-row h-[600px]">
                             <div className="w-full md:w-1/2 relative">
-                                <img 
+                                <Image
+                                width={400}
+                                height={400}
                                     src="/about1.jpeg" 
                                     alt="Contact" 
                                     className="w-full h-full object-cover"

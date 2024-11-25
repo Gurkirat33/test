@@ -3,6 +3,7 @@ import serviceModel from "@/models/service.model";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { SectionHeading } from "@/components/UI/SectionHeading";
+import Image from "next/image";
 
 export const revalidate = 2592000;
 
@@ -51,9 +52,11 @@ export default async function ServicesPage() {
                 }`}
               >
                 <div className="relative h-[300px] md:h-[420px] w-full overflow-hidden rounded-3xl bg-secondary/5">
-                  <img
+                  <Image
                     src={service.imageUrl}
                     alt={service.heading}
+                    width={400}
+                    height={300}
                     className="h-full w-full object-cover transition-transform duration-500 hover:scale-[1.03]"
                   />
                 </div>

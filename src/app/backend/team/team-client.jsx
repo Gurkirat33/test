@@ -1,6 +1,7 @@
 import { Pencil, Plus } from "lucide-react";
 import Link from "next/link";
 import DeleteButton from "./DeleteButton";
+import Image from "next/image";
 
 export default function TeamClient({ initialTeam }) {
   return (
@@ -32,7 +33,9 @@ export default function TeamClient({ initialTeam }) {
                 className="flex items-center gap-6 p-6 transition-colors hover:bg-primary"
               >
                 <div className="relative h-24 w-40 flex-shrink-0 overflow-hidden rounded-lg">
-                  <img
+                  <Image
+                  width={200}
+                  height={200}
                     src={member.imageUrl}
                     alt={member.name}
                     className="h-full w-full object-cover"

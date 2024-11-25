@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { deleteService } from "./actions";
 import { Pencil, Trash2, Plus } from "lucide-react";
+import Image from "next/image";
 
 export default function ServicesClient({ initialServices }) {
   const [services, setServices] = useState(initialServices);
@@ -55,7 +56,9 @@ export default function ServicesClient({ initialServices }) {
                 className="flex items-center gap-6 p-6 transition-colors hover:bg-primary"
               >
                 <div className="relative h-24 w-40 flex-shrink-0 overflow-hidden rounded-lg">
-                  <img
+                  <Image
+                  width={200}
+                    height={200}  
                     src={service.imageUrl}
                     alt={service.heading}
                     className="h-full w-full object-cover"

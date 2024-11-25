@@ -6,6 +6,7 @@ import { ChevronUp, ChevronDown, MoveDown } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import Link from "next/link";
+import Image from "next/image";
 
 const services = [
   {
@@ -148,7 +149,6 @@ const ServicesTimeline = () => {
         </button>
       </div>
 
-      {/* Main Content Section */}
       <Swiper
         direction="vertical"
         onSwiper={setSwiper}
@@ -162,7 +162,9 @@ const ServicesTimeline = () => {
             <div className="relative h-full w-full">
               <div className="absolute bg-black md:bg-transparent inset-0 z-10 md:bg-gradient-to-r md:from-black/60 md:via-black/10 md:to-black/60" />
 
-              <img
+              <Image
+              width={100}
+              height={100}
                 src={service.image}
                 alt={service.name}
                 className="hidden md:block absolute inset-0 h-full w-full object-cover"

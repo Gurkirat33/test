@@ -9,6 +9,7 @@ import {
 } from "../data/FooterData";
 import { Heart, Mail, PhoneCall } from "lucide-react";
 import { ThemeImage } from "./ThemeImage";
+import Image from "next/image";
 
 const Footer = () => {
   const date = new Date().getFullYear();
@@ -121,7 +122,9 @@ const Footer = () => {
         <div className="flex flex-col items-center justify-between pb-8 lg:flex-row lg:px-12 xl:pt-6">
           <div className="flex w-full flex-col gap-3 sm:flex-row sm:pl-14 lg:w-fit lg:gap-8 lg:pl-0">
             <div className="flex flex-1 flex-col md:items-start sm:items-start lg:gap-3 xl:flex-row xl:items-end xl:gap-5">
-              <img
+              <Image
+              width={50}
+              height={50}
                 src="/footer1.svg"
                 alt="img"
                 className="size-36 lg:mx-0 lg:h-full lg:w-full svg-color-mode"
@@ -132,7 +135,9 @@ const Footer = () => {
               </p>
             </div>
             <div className="sm:item-start flex flex-1 flex-col  text-center lg:gap-3 xl:flex-row xl:items-end xl:gap-5 xl:text-start">
-              <img
+              <Image
+              width={50}
+              height={50}
                 src="/footer2.svg"
                 alt="img"
                 className="size-36 lg:mx-0 lg:h-full lg:w-full svg-color-mode"

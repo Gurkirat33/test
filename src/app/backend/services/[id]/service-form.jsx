@@ -6,6 +6,7 @@ import { uploadToCloudinary } from "@/utils/uploadImage";
 import { useRouter } from "next/navigation";
 import { createService, updateService } from "../actions";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 
 const Editor = dynamic(
   () => import("@tinymce/tinymce-react").then((mod) => mod.Editor),
@@ -193,7 +194,9 @@ export default function ServiceForm({ initialData, id }) {
             <div className="relative h-40 w-40 flex-shrink-0">
               {formData.imageUrl ? (
                 <div className="relative h-full w-full overflow-hidden rounded-lg border border-border">
-                  <img
+                  <Image
+                  width={200}
+                  height={200}
                     src={formData.imageUrl}
                     alt="Preview"
                     className="h-full w-full object-cover"
