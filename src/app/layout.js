@@ -2,6 +2,9 @@ import "./globals.css";
 import NavbarComponent from "@/components/UI/Navbar/NavbarComponent";
 import FooterComponent from "@/components/UI/FooterComponent";
 import { Poppins } from 'next/font/google'
+import Script from 'next/script'
+import { ReCaptchaProvider } from "next-recaptcha-v3";
+
 
 export const metadata = {
   title: "Web development company: Giftechies",
@@ -36,8 +39,11 @@ export default function RootLayout({ children }) {
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body>
+        <Script src=""/>
         <NavbarComponent />
+        <ReCaptchaProvider siteKey="YOUR_SITE_KEY">
         {children}
+        </ReCaptchaProvider>
         <FooterComponent />
       </body>
     </html>

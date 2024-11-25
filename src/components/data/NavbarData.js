@@ -11,33 +11,66 @@ export const navData = [
     name: "Services",
     href: "/services",
     submenu: {
-      items: [
-        {
-          title: "Mobile Development",
-          description: "Explore our successful projects",
-          href: "/",
-        },
+      columnOne: [
         {
           title: "Web Development",
-          description: "Browse our latest work",
-          href: "/",
+          description: "Custom web applications and solutions",
+          href: "/services/web-development",
         },
         {
-          title: "UX/UI & Web Design",
-          description: "Read our latest blog posts",
-          href: "/",
+          title: "Mobile Development",
+          description: "Native and cross-platform mobile apps",
+          href: "/services/mobile-development",
+        },
+        {
+          title: "E-commerce Solutions",
+          description: "Online store development and optimization",
+          href: "/services/ecommerce-development",
         },
         {
           title: "WordPress Development",
-          description: "See what our clients have to say",
-          href: "/",
+          description: "Custom WordPress websites and plugins",
+          href: "/services/wordpress-development",
+        },
+      ],
+      columnTwo: [
+        {
+          title: "UI/UX Design",
+          description: "User-centered design solutions",
+          href: "/services/ui-ux-design",
+        },
+        {
+          title: "Digital Marketing",
+          description: "SEO, SEM, and social media marketing",
+          href: "/services/digital-marketing",
+        },
+        {
+          title: "Cloud Solutions",
+          description: "Cloud infrastructure and deployment",
+          href: "/services/cloud-solutions",
+        },
+        {
+          title: "DevOps Services",
+          description: "Continuous integration and deployment",
+          href: "/services/devops",
+        },
+      ],
+      additionalServices: [
+        {
+          title: "IT Consulting",
+          description: "Strategic technology consulting and planning",
+          href: "/services/consulting",
+        },
+        {
+          title: "Maintenance & Support",
+          description: "Ongoing maintenance and technical support",
+          href: "/services/maintenance",
         },
       ],
       preview: {
-        image:
-          "/about3.jpeg",
-        title: "Our Work",
-        description: "Discover how we've helped businesses grow",
+        image: "/about1.jpeg",
+        title: "Our Expertise",
+        description: "End-to-end digital solutions for your business growth",
       },
     },
   },
@@ -45,7 +78,6 @@ export const navData = [
     name: "Portfolio",
     href: "/portfolio",
   },
-
   {
     name: "Contact",
     href: "/contact",

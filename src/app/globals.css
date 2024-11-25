@@ -166,4 +166,7 @@
   .dark .footer-logo-filter{
     @apply [filter:brightness(50)_saturate(0%)];
   }
+  .custom-image-1{
+    background-image: url('/about1.jpeg');
+  }
 }

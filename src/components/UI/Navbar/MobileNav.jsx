@@ -1,3 +1,5 @@
+"use client";
+
 import { X } from "lucide-react";
 import Link from "next/link";
 
@@ -39,14 +41,39 @@ export default function MobileNav({
 
                 {item.submenu && (
                   <div className="space-y-2 pl-4">
-                    {item.submenu.items.map((subItem) => (
+                    {/* Column One Services */}
+                    {item.submenu.columnOne?.map((service) => (
                       <Link
-                        key={subItem.title}
-                        href={subItem.href}
+                        key={service.title}
+                        href={service.href}
                         className="block text-secondary-light"
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
-                        {subItem.title}
+                        {service.title}
+                      </Link>
+                    ))}
+                    
+                    {/* Column Two Services */}
+                    {item.submenu.columnTwo?.map((service) => (
+                      <Link
+                        key={service.title}
+                        href={service.href}
+                        className="block text-secondary-light"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        {service.title}
+                      </Link>
+                    ))}
+                    
+                    {/* Additional Services */}
+                    {item.submenu.additionalServices?.map((service) => (
+                      <Link
+                        key={service.title}
+                        href={service.href}
+                        className="block text-secondary-light"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        {service.title}
                       </Link>
                     ))}
                   </div>
@@ -61,7 +88,7 @@ export default function MobileNav({
           className="gradient-color block w-full rounded-full px-6 py-3 text-center text-tertiary-text"
           onClick={() => setIsMobileMenuOpen(false)}
         >
-          Start a project →
+          Start a project
         </Link>
       </div>
     </div>

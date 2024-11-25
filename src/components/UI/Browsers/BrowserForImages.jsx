@@ -45,7 +45,7 @@ export default function BrowserForImages({ projectData }) {
           </div>
         </div>
 
-        <div className="relative h-[400px] bg-gray-50">
+        <div className="relative h-[420px] bg-gray-50">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentIndex}
@@ -57,12 +57,12 @@ export default function BrowserForImages({ projectData }) {
             >
               <div className="flex h-full flex-col">
                 <div className="relative flex-grow">
-                  <div className="absolute inset-0 grid grid-cols-1 gap-4">
+                  <div className="absolute  inset-0 grid grid-cols-1 gap-4">
                     <div className="space-y-4">
                       <motion.img
                         src={currentProject.images[0]}
                         alt="Project preview 1"
-                        className="h-full w-full rounded-lg object-cover shadow-md"
+                        className="h-full md:h-[93%] w-full rounded-lg object-cover shadow-md overflow-hidden pb-4"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.2 }}
@@ -82,22 +82,7 @@ export default function BrowserForImages({ projectData }) {
                 </div>
               </div>
             </motion.div>
-          </AnimatePresence>
-
-          {/* Navigation Dots */}
-          <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 space-x-2">
-            {projectData.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`h-2 w-2 rounded-full transition-all ${
-                  currentIndex === index
-                    ? "bg-blue-500 w-4"
-                    : "bg-gray-300"
-                }`}
-              />
-            ))}
-          </div>
+          </AnimatePresence>         
         </div>
       </div>
     </div>

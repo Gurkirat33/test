@@ -120,37 +120,85 @@ const Navbar = () => {
                   </Link>
 
                   {item.submenu && (
-                    <div className="absolute left-0 top-3/4 mt-2 hidden w-[600px] rounded-2xl bg-primary p-8 shadow-lg group-hover:block">
-                      <div className="grid grid-cols-2 gap-8">
+                    <div className="bg-primary-light absolute -left-40 top-3/4 mt-2 hidden w-[900px] rounded-2xl  p-8 shadow-lg group-hover:block">
+                      <div className="grid grid-cols-3 gap-8">
                         <div className="space-y-6">
-                          {item.submenu.items.map((subItem) => (
+                          {item.submenu.columnOne.map((service) => (
                             <Link
-                              key={subItem.title}
-                              href={subItem.href}
+                              key={service.title}
+                              href={service.href}
                               className="group/item block"
                             >
-                              <h3 className="mb-1 text-xl font-medium text-secondary">
-                                {subItem.title}
+                              <div className="flex items-center justify-between">
+                              <h3 className="mb-1 text-[15px] font-medium text-secondary">
+                                {service.title}
                               </h3>
-                              <p className="text-sm text-secondary-light transition-colors group-hover/item:text-secondary">
-                                {subItem.description}
+                              <ArrowRight className="h-4 w-4 text-secondary"/>
+                              </div>
+                              <p className="text-[13px] text-secondary-light transition-colors group-hover/item:text-secondary tracking-wide">
+                                {service.description}
                               </p>
                             </Link>
                           ))}
                         </div>
-                        <div className="space-y-4">
-                          <h3 className="text-xl font-medium text-secondary">
-                            {item.submenu.preview.title}
-                          </h3>
-                          <p className="text-secondary-light">
-                            {item.submenu.preview.description}
-                          </p>
-                          <div className="mt-4 overflow-hidden rounded-xl">
-                            <img
-                              src={item.submenu.preview.image}
-                              alt={item.submenu.preview.title}
-                              className="h-48 w-full object-cover"
-                            />
+                        
+                        <div className="space-y-6">
+                          {item.submenu.columnTwo.map((service) => (
+                            <Link
+                              key={service.title}
+                              href={service.href}
+                              className="group/item block"
+                            >
+                              <div className="flex items-center justify-between">
+                              <h3 className="mb-1 text-[15px] font-medium text-secondary">
+                                {service.title}
+                              </h3>
+                              <ArrowRight className="h-4 w-4 text-secondary"/>
+                              </div>
+                              <p className="text-[13px] text-secondary-light transition-colors group-hover/item:text-secondary tracking-wide">
+                                {service.description}
+                              </p>
+                            </Link>
+                          ))}
+                        </div>
+
+                        {/* Third Column - 2 services */}
+                        <div>
+                          <div className="space-y-6">
+                            {item.submenu.additionalServices.map((service) => (
+                              <Link
+                                key={service.title}
+                                href={service.href}
+                                className="group/item block"
+                              >
+                                <div className="flex items-center gap-2 justify-between">
+                                <h3 className="mb-1 text-[15px] font-medium text-secondary">
+                                  {service.title}
+                                </h3>
+                                <ArrowRight className="h-4 w-4 text-secondary"/>
+                                </div>
+                                <p className="text-[13px] text-secondary-light transition-colors group-hover/item:text-secondary tracking-wide">
+                                  {service.description}
+                                </p>
+                              </Link>
+                            ))}
+                          </div>
+                          
+                          {/* Preview Image below 2 services */}
+                          <div>
+                            {/* <h3 className="text-xl font-medium text-secondary mb-2">
+                              {item.submenu.preview.title}
+                            </h3>
+                            <p className="text-sm text-secondary-light mb-4">
+                              {item.submenu.preview.description}
+                            </p> */}
+                            <div className="rounded-xl overflow-hidden mt-3">
+                              <img
+                                src={item.submenu.preview.image}
+                                alt={item.submenu.preview.title}
+                                className="h-36 w-full object-cover"
+                              />
+                            </div>
                           </div>
                         </div>
                       </div>
