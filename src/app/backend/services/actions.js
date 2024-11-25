@@ -68,7 +68,6 @@ export async function deleteService(id) {
       return { error: "Service not found" };
     }
 
-    // Revalidate both the services list and individual service pages
     revalidatePath("/services");
     revalidatePath("/services/[slug]", "layout");
     revalidatePath("/backend/services");
@@ -128,7 +127,6 @@ export async function updateService(id, data) {
 
     console.log("Updated service:", service);
 
-    // Revalidate both the services list and individual service pages
     revalidatePath("/services");
     revalidatePath("/services/[slug]", "layout");
     revalidatePath("/backend/services");
@@ -151,7 +149,6 @@ export async function createService(data) {
     const service = new serviceModel(data);
     await service.save();
 
-    // Revalidate both the services list and individual service pages
     revalidatePath("/services");
     revalidatePath("/services/[slug]", "layout");
     revalidatePath("/backend/services");

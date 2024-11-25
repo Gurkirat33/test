@@ -92,7 +92,6 @@ export async function updatePortfolio(id, data) {
       slug: portfolio.slug || '',
     };
     
-    // Revalidate both frontend and backend paths
     revalidatePath("/portfolio", "layout");
     revalidatePath("/backend/portfolio");
     
@@ -118,7 +117,6 @@ export async function createPortfolio(data) {
       slug: portfolio.slug || '',
     };
     
-    // Revalidate both frontend and backend paths
     revalidatePath("/portfolio", "layout");
     revalidatePath("/backend/portfolio");
     
