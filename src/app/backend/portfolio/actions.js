@@ -2,7 +2,7 @@
 
 import { getDbConnection } from "@/lib/auth";
 import portfolioModel from "@/models/portfolio.model";
-import { revalidatePath, revalidateTag } from "next/cache";
+import { revalidatePath } from "next/cache";
 
 export async function deletePortfolio(id) {
   if (!id) {
@@ -18,8 +18,10 @@ export async function deletePortfolio(id) {
     }
 
     await portfolioModel.findByIdAndDelete(id);
+    
+    // Revalidate both frontend and backend paths
+    revalidatePath("/portfolio", "layout");
     revalidatePath("/backend/portfolio");
-    revalidateTag('portfolio-items');
     
     return { success: true };
   } catch (error) {
@@ -90,8 +92,10 @@ export async function updatePortfolio(id, data) {
       slug: portfolio.slug || '',
     };
     
+    // Revalidate both frontend and backend paths
+    revalidatePath("/portfolio", "layout");
     revalidatePath("/backend/portfolio");
-    revalidateTag('portfolio-items');
+    
     return { success: true, data: plainPortfolio };
   } catch (error) {
     console.error("Error updating portfolio:", error);
@@ -114,8 +118,10 @@ export async function createPortfolio(data) {
       slug: portfolio.slug || '',
     };
     
+    // Revalidate both frontend and backend paths
+    revalidatePath("/portfolio", "layout");
     revalidatePath("/backend/portfolio");
-    revalidateTag('portfolio-items');
+    
     return { success: true, data: plainPortfolio };
   } catch (error) {
     console.error("Error creating portfolio:", error);
