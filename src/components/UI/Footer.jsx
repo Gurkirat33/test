@@ -8,13 +8,9 @@ import {
   UsaFlagSvg,
 } from "../data/FooterData";
 import { Heart, Mail, PhoneCall } from "lucide-react";
-import Logo from "@/images/Giftechies-Logo-light-mode.svg";
-import darkLogo from "@/images/Giftechies-Logo-dark-mode.svg";
-import Image from "next/image";
+import { ThemeImage } from "./ThemeImage";
 
 const Footer = () => {
-  const darkMode = true;
-  const isDarkMode = true;
   const date = new Date().getFullYear();
   return (
     <footer className="overflow-x-hidden relative bg-primary px-4 pb-8 pt-28 text-secondary sm:px-8">
@@ -35,7 +31,14 @@ const Footer = () => {
         <div className="grid grid-cols-12 gap-12 pr-1 sm:pl-14 sm:pr-8 lg:pl-20 lg:pr-12 xl:gap-2
          xl:pl-20 xl:pr-16">
           <div className="col-span-12 flex flex-col  pl-14 sm:pl-0 md:col-span-6 lg:order-1 lg:col-span-3">
-            <img src="/footer-dark.svg" alt="" className="h-44 w-52 footer-logo-filters "/>
+            <ThemeImage
+              darkSrc="/footer5.svg"
+              lightSrc="/footer-dark.svg"
+              alt=""
+              width={52}
+              height={52}
+              className="h-44 w-52"
+            />
             <h4 className="text-2xl mb-6 text-secondary-light">Ready? Let’s Talk
             </h4>
             <div className="flex gap-4">

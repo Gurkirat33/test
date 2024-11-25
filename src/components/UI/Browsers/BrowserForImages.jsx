@@ -56,13 +56,13 @@ export default function BrowserForImages({ projectData }) {
               transition={{ duration: 0.5 }}
             >
               <div className="flex h-full flex-col">
-                <div className="relative flex-grow">
-                  <div className="absolute  inset-0 grid grid-cols-1 gap-4">
-                    <div className="space-y-4">
+                <div className="relative flex-1">
+                  <div className="absolute inset-0">
+                    <div className="h-full">
                       <motion.img
                         src={currentProject.images[0]}
-                        alt="Project preview 1"
-                        className="h-full md:h-[93%] w-full rounded-lg object-cover shadow-md overflow-hidden pb-4"
+                        alt="Project preview"
+                        className="h-full w-full rounded-lg shadow-md object-cover"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.2 }}

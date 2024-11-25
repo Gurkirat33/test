@@ -37,34 +37,34 @@ export const navData = [
         {
           title: "UI/UX Design",
           description: "User-centered design solutions",
-          href: "/services/ui-ux-design",
+          href: "/services/ui",
         },
         {
-          title: "Digital Marketing",
+          title: "Print / Graphic Design",
           description: "SEO, SEM, and social media marketing",
-          href: "/services/digital-marketing",
+          href: "/services/print-graphic-design",
         },
         {
-          title: "Cloud Solutions",
+          title: "Branding",
           description: "Cloud infrastructure and deployment",
-          href: "/services/cloud-solutions",
+          href: "/services/branding",
         },
         {
-          title: "DevOps Services",
+          title: "Logo Design",
           description: "Continuous integration and deployment",
-          href: "/services/devops",
+          href: "/services/logo-design",
         },
       ],
       additionalServices: [
         {
-          title: "IT Consulting",
+          title: "Front End & Responsive HTML",
           description: "Strategic technology consulting and planning",
-          href: "/services/consulting",
+          href: "/services/front-end",
         },
         {
-          title: "Maintenance & Support",
+          title: "SEO",
           description: "Ongoing maintenance and technical support",
-          href: "/services/maintenance",
+          href: "/services/seo",
         },
       ],
       preview: {

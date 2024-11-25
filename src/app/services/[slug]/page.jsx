@@ -1,6 +1,5 @@
 import Breadcrumb from "@/components/UI/Breadcrumb";
 import ServiceForm from "@/components/UI/ServiceForm";
-import { servicesData } from "@/data/services";
 import { notFound } from "next/navigation";
 import { getDbConnection } from "@/lib/auth";
 import serviceModel from "@/models/service.model";
@@ -17,6 +16,7 @@ async function getServiceBySlug(slug) {
     
     return {
       id: service._id.toString(),
+      title: service.heading || "",
       longDescription: service.longDescription || "",
       imageUrl: service.imageUrl || "",
     };
@@ -51,13 +51,14 @@ export async function generateStaticParams() {
 export default async function ServicePage({ params }) {
   const { slug } = params;
   
-  const serviceData = servicesData.find(service => service.slug === slug);
+  // const serviceData = servicesData.find(service => service.slug === slug);
   const dbService = await getServiceBySlug(slug);
   const allServices = await getAllServices();
   
-  if (!serviceData) {
+  if (!dbService) {
     notFound();
   }
+  console.log(dbService);
 
   return (
     <div className="pt-[72px]">
@@ -67,14 +68,14 @@ export default async function ServicePage({ params }) {
           <ServicesSidebar services={allServices} />
 
           <div className="flex-1 min-w-0">
-            <h1 className="text-4xl lg:text-5xl font-semibold mb-8">{serviceData.title}</h1>
+            <h1 className="text-3xl lg:text-4xl font-semibold mb-8">{dbService.title}</h1>
             
             {dbService?.imageUrl && (
               <div className="mb-8">
                 <div className="relative w-full rounded-xl overflow-hidden" style={{ height: '280px' }}>
                   <Image
                     src={dbService.imageUrl}
-                    alt={`${serviceData.title} illustration`}
+                    alt={`${dbService.title} illustration`}
                     fill
                     className="object-cover"
                   />

@@ -1,9 +1,9 @@
-
 import { ArrowRight, MoveDown, MoveRight, PhoneCall } from "lucide-react";
 import Link from "next/link";
 import gridData from "../data/gridData";
-import Image from "next/image";
 import { CallButton } from "./CallButton";
+import { ThemeImage } from "./ThemeImage";
+import { useTheme } from "@/context/ThemeContext";
 
 const getGridClasses = (index) => {
   if (index === 1)
@@ -13,13 +13,15 @@ const getGridClasses = (index) => {
   return "col-span-2 lg:col-span-1 row-span-1 max-lg:order-1";
 };
 
-
 export default function BentoGrid() {
+  // const { theme } = useTheme();
+
   return (
     <div className="relative py-12">
       <Link href="/contact" className="hidden transalent absolute left-1/2 top-1/2 z-10 lg:flex size-80 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-primary shadow-lg">
-        <Image
-          src="/services2.svg"
+        <ThemeImage
+          darkSrc="/grid-dark.svg"
+          lightSrc="/services2.svg"
           alt=""
           fill
           className="scale-[0.8]"

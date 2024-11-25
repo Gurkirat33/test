@@ -2,9 +2,9 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
-import { ArrowRight, Menu, MoveRight } from "lucide-react";
+import { ArrowRight, Menu, MoveRight, Sun, Moon } from "lucide-react";
 import Link from "next/link";
-import DarkModeToggle from "../../DarkModeToggle";
+import { useTheme } from "@/context/ThemeContext";
 import { navData, navVariants } from "../../data/NavbarData";
 import MobileNav from "./MobileNav";
 import Logo from "@/images/Giftechies-Logo-light-mode.svg";
@@ -15,20 +15,22 @@ import { usePathname } from "next/navigation";
 const Navbar = () => {
   const { scrollY } = useScroll();
   const pathname = usePathname();
-  const [isDarkMode, setIsDarkMode] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [atTop, setAtTop] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
-    const theme =
-      localStorage.getItem("theme") ||
-      (window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? "dark"
-        : "light");
-    setIsDarkMode(theme === "dark");
-  }, []);
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMobileMenuOpen]);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setAtTop(latest < 10);
@@ -42,18 +44,6 @@ const Navbar = () => {
     setLastScrollY(latest);
   });
 
-  // To remove scrollbar when nav is open
-  useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [isMobileMenuOpen]);
-
   return (
     <motion.header
       variants={navVariants}
@@ -61,23 +51,16 @@ const Navbar = () => {
       initial="visible"
       className={`fixed left-0 right-0 top-0 z-50 flex justify-center transition-all duration-300 ease-in-out ${atTop ? "w-full" : "mt-0"} shadow-lg`}
     >
-      {/*   ${
-          atTop
-            ? "w-full bg-primary"
-            : "w-[90%] rounded-full bg-primary/90 shadow-lg xl:w-[80%]"
-        } */}
       <nav
-        className={`transition-all duration-300 ease-in-out w-full bg-primary
-        
-        `}
+        className={`transition-all duration-300 ease-in-out w-full bg-primary`}
       >
         <div className={`mx-auto px-0 transition-all duration-300 ease-in-out bg-primary`}>
-          <div className="flex items-center justify-between ">
+          <div className="flex items-center justify-between">
             <Link
               href="/"
               className="py-4 text-lg font-medium text-secondary lg:py-0 h-[72px] pl-2 sm:bg-primary-light inline-flex items-center justify-center"
             >
-              {isDarkMode ? (
+              {theme === 'dark' ? (
                 <Image src={darkLogo} alt="" width={210} className="p-3" />
               ) : (
                 <Image src={Logo} alt="" width={210} className="p-3" />
@@ -209,15 +192,22 @@ const Navbar = () => {
             </div>
 
             <div className="flex items-center h-[72px]">
-              <DarkModeToggle
-                isDarkMode={isDarkMode}
-                setIsDarkMode={setIsDarkMode}
-              />
+              <button
+                onClick={toggleTheme}
+                className="bg-primary-light text-secondary-light px-6 lg:px-4 h-full"
+                aria-label="Toggle theme"
+              >
+                {theme === 'dark' ? (
+                  <Sun className="h-6 w-6" />
+                ) : (
+                  <Moon className="h-6 w-6" />
+                )}
+              </button>
               <Link
                 href="/contact"
-                className="gradient-color h-[72px] hidden w-full  text-center text-[17px] text-tertiary-text lg:inline-flex items-center px-6 justify-center"
+                className="gradient-color h-[72px] hidden w-full text-center text-[17px] text-tertiary-text lg:inline-flex items-center px-6 justify-center"
               >
-                Start a project <MoveRight className="ml-2 " size={20}/>
+                Start a project <MoveRight className="ml-2" size={20} />
               </Link>
               <button
                 className="gradient-color  p-2 text-secondary lg:hidden  px-6 lg:px-0  h-full"
