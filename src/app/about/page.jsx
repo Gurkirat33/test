@@ -29,31 +29,13 @@ export default function AboutPage() {
             <div className="gap-4">
               <div className="h-full">
                 <img
-                  src="https://img.freepik.com/free-vector/office-work-concept-illustration_114360-8802.jpg?t=st=1732613280~exp=1732616880~hmac=f24e4ca3b4973fbb49320b2d9c443f567248a75e1e4b8d40ee03f5657d1c310d&w=740"
+                  src="/aboutgiftechies.jpeg"
                   width={500}
                   height={500}
                   alt="Team collaboration"
                   className="h-full w-full object-cover rounded-2xl"
                 />
               </div>
-              {/* <div className="relative col-span-1 row-span-1 mt-12 overflow-hidden rounded-2xl">
-                <Image
-                  src="/about1.jpeg"
-                  width={200}
-                  height={300}
-                  alt="Creative process"
-                  className="h-full w-full object-cover"
-                />
-              </div>
-              <div className="relative col-span-1 row-span-1 overflow-hidden rounded-2xl">
-                <Image
-                  src="/about2.jpeg"
-                  alt="Design work"
-                  className="h-full w-full object-cover"
-                  width={200}
-                  height={300}
-                />
-              </div> */}
             </div>
 
             <div className="space-y-10">

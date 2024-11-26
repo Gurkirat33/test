@@ -113,7 +113,7 @@ const Footer = () => {
                 <input
                   type="tel"
                   name="phone"
-                  placeholder="Phone (optional)"
+                  placeholder="Phone"
                   value={formData.phone}
                   onChange={handleChange}
                   className="w-full  border-b border-border bg-transparent px-4 py-2 text-secondary outline-none "

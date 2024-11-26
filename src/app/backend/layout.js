@@ -1,13 +1,13 @@
-"use client";
+// "use client";
 
 import { Menu } from "lucide-react";
 import Sidebar from "@/components/UI/dashboard/Sidebar";
 import Link from "next/link";
-import DarkModeToggle from "@/components/DarkModeToggle";
-import { useState } from "react";
+// import DarkModeToggle from "@/components/DarkModeToggle";
+// import { useState } from "react";
 
 export default function DashboardLayout({ children }) {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  // const [isDarkMode, setIsDarkMode] = useState(false);
 
   return (
     <div className="min-h-screen bg-primary">
@@ -20,7 +20,7 @@ export default function DashboardLayout({ children }) {
             <h1 className="text-xl font-semibold text-secondary">Admin Dashboard</h1>
           </div>
           <div className="flex items-center gap-4">
-            <DarkModeToggle isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
+            {/* <DarkModeToggle isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} /> */}
             <Link
               href="/"
               target="_blank"
