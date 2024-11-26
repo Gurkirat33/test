@@ -2,7 +2,7 @@ import "./globals.css";
 import NavbarComponent from "@/components/UI/Navbar/NavbarComponent";
 import FooterComponent from "@/components/UI/FooterComponent";
 import { Poppins } from 'next/font/google'
-import { ThemeProvider } from "@/context/ThemeContext";
+// import { ThemeProvider } from "@/context/ThemeContext";
 import MobileMenu from "@/components/MobileMenu";
 
 export const metadata = {
@@ -21,14 +21,14 @@ const poppins = Poppins({
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${poppins.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${poppins.variable} light`} suppressHydrationWarning>
       <body suppressHydrationWarning>
           <MobileMenu/>
-        <ThemeProvider>
+        {/* <ThemeProvider> */}
           <NavbarComponent />
           {children}
           <FooterComponent />
-        </ThemeProvider>
+        {/* </ThemeProvider> */}
       </body>
     </html>
   );

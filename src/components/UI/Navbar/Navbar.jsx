@@ -19,7 +19,10 @@ const Navbar = () => {
   const [atTop, setAtTop] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { theme, toggleTheme } = useTheme();
+  // const { theme, toggleTheme } = useTheme();
+  const theme = "light";
+  const toggleTheme = () => {};
+
 
   useEffect(() => {
     if (isMobileMenuOpen) {
