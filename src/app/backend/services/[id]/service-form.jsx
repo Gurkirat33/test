@@ -33,14 +33,8 @@ export default function ServiceForm({ initialData, id }) {
     slug: initialData?.slug || "",
   });
 
-  useEffect(() => {
-    console.log("Initial data:", initialData);
-    console.log("Current form data:", formData);
-  }, [initialData, formData]);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log("Field changed:", name, value);
     setFormData((prev) => ({
       ...prev,
       [name]: value
@@ -109,8 +103,6 @@ export default function ServiceForm({ initialData, id }) {
     setFormError("");
     
     try {
-      console.log("Form data before submission:", formData);
-
       const serviceData = {
         heading: formData.heading.trim(),
         description: formData.description.trim(),
@@ -123,16 +115,12 @@ export default function ServiceForm({ initialData, id }) {
         slug: formData.slug.trim(),
       };
 
-      console.log("Processed service data:", serviceData);
-
       let response;
       if (id === "new") {
         response = await createService(serviceData);
       } else {
         response = await updateService(id, serviceData);
       }
-
-      console.log("Server response:", response);
 
       if (response.success) {
         router.push("/backend/services");

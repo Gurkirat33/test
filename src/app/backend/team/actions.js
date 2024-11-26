@@ -57,7 +57,6 @@ export async function deleteTeamMember(id) {
     
     // Revalidate both frontend and backend paths
     revalidatePath("/about", "layout");
-    console.log("revalidatePath('/backend/team')");
     revalidatePath("/backend/team", "layout");
     
     return { success: true };

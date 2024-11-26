@@ -58,7 +58,6 @@ export default async function ServicePage({ params }) {
   if (!dbService) {
     notFound();
   }
-  console.log(dbService);
 
   return (
     <div className="pt-[72px]">
@@ -68,7 +67,7 @@ export default async function ServicePage({ params }) {
           <ServicesSidebar services={allServices} />
 
           <div className="flex-1 min-w-0">
-            <h1 className="text-3xl lg:text-4xl font-semibold mb-8">{dbService.title}</h1>
+            <h1 className="text-2xl lg:text-4xl font-semibold mt-6 mb-3">{dbService.title}</h1>
             
             {dbService?.imageUrl && (
               <div className="mb-8">
@@ -84,7 +83,7 @@ export default async function ServicePage({ params }) {
             )}
 
             {dbService?.longDescription && (
-              <div className="prose prose-lg max-w-none description-text">
+              <div className="prose prose-lg max-w-none description-text text-justify">
                 <div dangerouslySetInnerHTML={{ __html: dbService.longDescription }} />
               </div>
             )}

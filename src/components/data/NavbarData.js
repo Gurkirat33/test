@@ -14,59 +14,59 @@ export const navData = [
       columnOne: [
         {
           title: "Web Development",
-          description: "Custom web applications and solutions",
+          description: "Tailored websites and web platforms",
           href: "/services/web-development",
         },
         {
           title: "Mobile Development",
-          description: "Native and cross-platform mobile apps",
+          description: "Efficient native and hybrid app solutions",
           href: "/services/mobile-development",
         },
         {
           title: "E-commerce Solutions",
-          description: "Online store development and optimization",
+          description: "Comprehensive e-commerce development",
           href: "/services/ecommerce-development",
         },
         {
           title: "WordPress Development",
-          description: "Custom WordPress websites and plugins",
+          description: "Custom themes and plugins for WordPress",
           href: "/services/wordpress-development",
         },
       ],
       columnTwo: [
         {
           title: "UI/UX Design",
-          description: "User-centered design solutions",
+          description: "Innovative and user-focused interfaces",
           href: "/services/ui",
         },
         {
           title: "Print / Graphic Design",
-          description: "SEO, SEM, and social media marketing",
+          description: "Creative and impactful graphic designs",
           href: "/services/print-graphic-design",
         },
         {
           title: "Branding",
-          description: "Cloud infrastructure and deployment",
+          description: "Strategic branding for businesses",
           href: "/services/branding",
         },
         {
           title: "Logo Design",
-          description: "Continuous integration and deployment",
+          description: "Memorable and professional logo designs",
           href: "/services/logo-design",
         },
       ],
       additionalServices: [
         {
           title: "Front End & Responsive HTML",
-          description: "Strategic technology consulting and planning",
+          description: "Responsive and accessible front-end code",
           href: "/services/front-end",
         },
         {
           title: "SEO",
-          description: "Ongoing maintenance and technical support",
+          description: "Comprehensive search engine optimization",
           href: "/services/seo",
         },
-      ],
+      ],   
       preview: {
         image: "/about1.jpeg",
         title: "Our Expertise",

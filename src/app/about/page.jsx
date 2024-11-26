@@ -1,6 +1,6 @@
 import AboutMission from "@/components/UI/AboutMission";
 import { SectionHeading } from "@/components/UI/SectionHeading";
-import TeamSection from "@/components/UI/TeamSection";
+// import TeamSection from "@/components/UI/TeamSection";
 
 import Image from "next/image";
 
@@ -26,20 +26,17 @@ export default function AboutPage() {
 
         <section className="w-full py-8">
           <div className="grid gap-12 lg:grid-cols-2">
-            <div className="relative grid grid-cols-2 grid-rows-2 gap-4">
-              <div className="absolute right-0 z-40 rounded-lg bg-primary-light p-6 text-center">
-                <p className="text-2xl text-secondary">13</p>
-                <p className="text-xl text-secondary">Years</p>
-              </div>
-              <div className="relative col-span-1 row-span-2 overflow-hidden rounded-2xl">
-                <Image
-                  src="/about3.jpeg"
+            <div className="gap-4">
+              <div className="h-full">
+                <img
+                  src="https://img.freepik.com/free-vector/office-work-concept-illustration_114360-8802.jpg?t=st=1732613280~exp=1732616880~hmac=f24e4ca3b4973fbb49320b2d9c443f567248a75e1e4b8d40ee03f5657d1c310d&w=740"
+                  width={500}
+                  height={500}
                   alt="Team collaboration"
-                  className="h-full w-full object-cover"
-                  fill
+                  className="h-full w-full object-cover rounded-2xl"
                 />
               </div>
-              <div className="relative col-span-1 row-span-1 mt-12 overflow-hidden rounded-2xl">
+              {/* <div className="relative col-span-1 row-span-1 mt-12 overflow-hidden rounded-2xl">
                 <Image
                   src="/about1.jpeg"
                   width={200}
@@ -56,7 +53,7 @@ export default function AboutPage() {
                   width={200}
                   height={300}
                 />
-              </div>
+              </div> */}
             </div>
 
             <div className="space-y-10">
@@ -101,7 +98,7 @@ We understand the importance of portrayal of digital images and come up with som
           </div>
         </section>
         <AboutMission/>
-        <TeamSection />
+        {/* <TeamSection /> */}
       </div>
     </div>
   );

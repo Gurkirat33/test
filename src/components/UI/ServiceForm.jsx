@@ -2,6 +2,7 @@
 
 import { Send } from "lucide-react";
 import { useState } from "react";
+import { submitContactForm } from "@/app/backend/contact/actions";
 
 export default function ServiceForm() {
     const [formData, setFormData] = useState({
@@ -11,15 +12,35 @@ export default function ServiceForm() {
         message: ""
     });
 
+    const [status, setStatus] = useState({
+        loading: false,
+        error: null,
+        success: false
+    });
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(formData);
-        setFormData({ name: "", email: "", phone: "", message: "" });
+        setStatus({ loading: true, error: null, success: false });
+
+        try {
+            const result = await submitContactForm(formData);
+            if (result.success) {
+                setStatus({ loading: false, error: null, success: true });
+                setFormData({ name: "", email: "", phone: "", message: "" });
+                setTimeout(() => {
+                    setStatus(prev => ({ ...prev, success: false }));
+                }, 3000);
+            } else {
+                setStatus({ loading: false, error: result.error || "Failed to submit", success: false });
+            }
+        } catch (error) {
+            setStatus({ loading: false, error: "Something went wrong", success: false });
+        }
     };
 
     return (
@@ -84,11 +105,21 @@ export default function ServiceForm() {
 
                 <button
                     type="submit"
-                    className="w-full gradient-color text-white py-2.5 rounded-lg hover:opacity-95 transition-opacity flex items-center justify-center gap-2"
+                    disabled={status.loading}
+                    className={`inline-flex items-center  justify-center gap-2 gradient-color w-full rounded-lg px-4 py-2.5 text-sm text-white transition-opacity ${
+                        status.loading ? "opacity-50 cursor-not-allowed" : "hover:opacity-90"
+                    }`}
                 >
-                    Send Message
                     <Send className="h-5 w-5" />
+                    {status.loading ? "Sending..." : "Send Message"}
                 </button>
+
+                {status.error && (
+                    <p className="text-sm text-red-500 mt-2">{status.error}</p>
+                )}
+                {status.success && (
+                    <p className="text-sm text-green-500 mt-2">Message sent successfully!</p>
+                )}
             </form>
         </div>
     );

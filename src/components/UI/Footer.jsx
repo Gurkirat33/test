@@ -8,7 +8,7 @@ import {
   socialLinks,
   UsaFlagSvg,
 } from "../data/FooterData";
-import { Heart, Mail, MessageCircle, PhoneCall } from "lucide-react";
+import { Heart, Mail, MessageCircle } from "lucide-react";
 import { ThemeImage } from "./ThemeImage";
 import Image from "next/image";
 import { submitContactForm } from "@/app/backend/contact/actions";
@@ -183,7 +183,7 @@ const Footer = () => {
                 141006 - INDIA
               </p>
             </div>
-            <div className="sm:item-start flex flex-1 flex-col  text-center lg:gap-3 xl:flex-row xl:items-end xl:gap-5 xl:text-start">
+            <div className="sm:item-start flex flex-1 flex-col  lg:gap-3 xl:flex-row xl:items-end xl:gap-5 xl:text-start">
               <Image
               width={50}
               height={50}

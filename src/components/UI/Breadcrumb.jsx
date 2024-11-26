@@ -14,7 +14,7 @@ const Breadcrumb = () => {
       <div>
         <Link
           href="/"
-          className="flex items-center gap-1 rounded-md px-2 py-1 transition-colors hover:bg-primary-light"
+          className="text-sm md:text-base flex items-center gap-1 rounded-md px-2 py-1 transition-colors hover:bg-primary-light"
         >
           <Home size={16} />
           <span>Home</span>
@@ -33,13 +33,13 @@ const Breadcrumb = () => {
           <div key={path} className="flex items-center gap-2">
             <ChevronRight size={16} />
             {isLast ? (
-              <span className="rounded-md px-2 py-1 font-medium text-secondary">
+              <span className="text-sm mg:text-baserounded-md px-2 py-1 font-medium text-secondary">
                 {formattedPath}
               </span>
             ) : (
               <Link
                 href={href}
-                className="rounded-md px-2 py-1 transition-colors hover:bg-primary-light"
+                className="text-sm md:text-base rounded-md px-2 py-1 transition-colors hover:bg-primary-light"
               >
                 {formattedPath}
               </Link>

@@ -5,7 +5,6 @@ import Admin from "@/models/admin";
 export const getDbConnection = cache(async () => {
   try {
     if (mongoose.connections[0].readyState) {
-      console.log("Using existing database connection");
       return mongoose.connection;
     }
 
@@ -15,7 +14,6 @@ export const getDbConnection = cache(async () => {
       socketTimeoutMS: 45000,
     });
 
-    console.log("Database connected successfully");
     return database.connection;
   } catch (error) {
     console.error("Database connection error:", error);

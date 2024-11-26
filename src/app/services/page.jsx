@@ -39,15 +39,15 @@ export default async function ServicesPage() {
       <div className="section-container">
       </div>
 
-      <div className="relative mt-10">
+      <div className="relative mt-4 md:mt-10">
         {services.map((service, index) => (
           <div
             key={service.id}
-            className={`relative ${index !== services.length - 1 ? "mb-20" : ""}`}
+            className={`relative ${index !== services.length - 1 ? "mb-12 md:mb-20" : ""}`}
           >
             <div className="section-container">
               <div
-                className={`grid items-center gap-12 lg:grid-cols-2 ${
+                className={`grid items-center gap-8 md:gap-12 lg:grid-cols-2 ${
                   index % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""
                 }`}
               >
@@ -63,10 +63,10 @@ export default async function ServicesPage() {
 
                 <div className="relative">
                   <div className="">
-                    <h3 className="mb-6 text-3xl font-semibold text-secondary lg:text-4xl">
+                    <h3 className="mb-3 md:mb-6 text-2xl font-semibold text-secondary lg:text-4xl">
                       {service.heading}
                     </h3>
-                    <p className="mb-8 description-text leading-relaxed text-secondary-light">
+                    <p className="mb-3 md:mb-8 description-text leading-relaxed text-secondary-light">
                       {service.description}
                     </p>
                     <div className="mb-8 space-y-3">

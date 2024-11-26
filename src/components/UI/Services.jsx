@@ -7,6 +7,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import Link from "next/link";
 import Image from "next/image";
+import BgGrid from "./BgGrid";
 
 const services = [
   {
@@ -85,6 +86,7 @@ const ServicesTimeline = () => {
   return (
     <>
           <div className="bg-extra-bg relative inline-block text-center w-full p-12">
+    
             <span className="block mb-2 text-sm font-medium tracking-[0.3em] gradient-color-text uppercase">How We Work</span>
             <div className="relative">
               <h2 className="text-3xl md:text-6xl font-bold mb-3 relative inline-block">
@@ -112,7 +114,7 @@ const ServicesTimeline = () => {
           <ChevronUp size={24} />
         </button>
 
-        <div className="flex top-4 md:flex-col absolute md:relative right-12  lg:right-0 gap-4 md:gap-14 md:py-20">
+        <div className="flex text-center md:text-left justify-center top-4 md:flex-col absolute md:relative right-12  lg:right-0 gap-4 md:gap-14 md:py-20">
           {services.map((service, index) => (
             <div
               key={service.id}
@@ -161,7 +163,9 @@ const ServicesTimeline = () => {
           <SwiperSlide key={service.id}>
             <div className="relative h-full w-full">
               <div className="absolute bg-black md:bg-transparent inset-0 z-10 md:bg-gradient-to-r md:from-black/60 md:via-black/10 md:to-black/60" />
-
+              <div className="absolute z-40 inset-0">
+            <BgGrid />
+              </div>
               <Image
               width={100}
               height={100}

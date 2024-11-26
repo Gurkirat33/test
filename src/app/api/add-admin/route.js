@@ -23,8 +23,6 @@ export async function POST(request) {
 
     await newAdmin.save();
 
-    console.log("Admin user added successfully:", newAdmin);
-
     return NextResponse.json(
       { message: "Admin user created successfully" },
       { status: 201 },

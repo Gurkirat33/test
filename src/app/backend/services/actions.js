@@ -14,7 +14,6 @@ const serializeService = (service) => {
     keyPoints: Array.isArray(service.keyPoints) ? service.keyPoints : [],
     slug: service.slug || "",
   };
-  console.log("Serialized service:", serialized);
   return serialized;
 };
 
@@ -81,9 +80,6 @@ export async function deleteService(id) {
 
 export async function updateService(id, data) {
   try {
-    console.log("Updating service with ID:", id);
-    console.log("Received data:", data);
-
     const errors = validateService(data);
     if (errors.length > 0) {
       return { error: errors.join(", ") };
@@ -111,8 +107,6 @@ export async function updateService(id, data) {
       }
     };
 
-    console.log("Update data:", updateData);
-
     const service = await serviceModel
       .findByIdAndUpdate(
         id, 
@@ -124,8 +118,6 @@ export async function updateService(id, data) {
     if (!service) {
       return { error: "Service not found" };
     }
-
-    console.log("Updated service:", service);
 
     revalidatePath("/services");
     revalidatePath("/services/[slug]", "layout");

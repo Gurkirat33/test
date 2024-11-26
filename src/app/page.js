@@ -6,6 +6,7 @@ import BentoGrid from "@/components/UI/BentoGrid";
 // import BlogSection from "@/components/UI/Blog";
 import ScrollingBanner from "@/components/ScrollingBanner";
 import BgGrid from "@/components/UI/BgGrid";
+import Demo from "@/components/Demo";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
     <div className="relative">
       <BgGrid/>
       <HeroSection />
+      {/* <Demo/> */}
       <BentoGrid />
     </div>
       <Services />

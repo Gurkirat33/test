@@ -6,6 +6,18 @@ const gridData = [
     description: "Mobile platform represents both a unique opportunity and unique challenge in the business world.",
     icon: Smartphone,
     link:"/services/mobile-development",
+    conent:() => (
+      <div className="relative w-fit mx-auto">
+      <span className="text-[120px] md:text-[150px] lg:text-[200px] font-bold leading-none text-secondary opacity-10">
+        13
+      </span>
+      <div className="absolute left-0 top-1/2 -translate-y-1/2 text-secondary">
+        <span className="text-lg md:text-xl font-medium">Years of</span>
+        <br />
+        <span className="text-2xl md:text-3xl font-bold">Excellence</span>
+      </div>
+    </div>
+    )
   }, 
   {
     title: "GifTechies",
@@ -64,7 +76,7 @@ const gridData = [
     title: "SEO",
     description: "Driving growth with tailored strategies for SEO, social media, and online advertising.",
     icon: BarChart2,
-    link:"/digital"
+    link:"/services/seo"
   }
   
 ];
