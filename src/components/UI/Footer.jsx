@@ -1,5 +1,6 @@
-import React from "react";
-import Link from "next/link";
+'use client';
+
+import { useState } from "react";
 import {
   IndiaFlagSvg,
   links1,
@@ -10,9 +11,42 @@ import {
 import { Heart, Mail, MessageCircle, PhoneCall } from "lucide-react";
 import { ThemeImage } from "./ThemeImage";
 import Image from "next/image";
+import { submitContactForm } from "@/app/backend/contact/actions";
+import Link from "next/link";
 
 const Footer = () => {
   const date = new Date().getFullYear();
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
+  const [status, setStatus] = useState({ loading: false, error: null, success: false });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus({ loading: true, error: null, success: false });
+
+    try {
+      const result = await submitContactForm(formData);
+      if (result.success) {
+        setStatus({ loading: false, error: null, success: true });
+        setFormData({ name: "", email: "", phone: "", message: "" });
+        setTimeout(() => setStatus(prev => ({ ...prev, success: false })), 3000);
+      } else {
+        setStatus({ loading: false, error: result.error || "Failed to submit form", success: false });
+      }
+    } catch (error) {
+      setStatus({ loading: false, error: "Something went wrong", success: false });
+    }
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
   return (
     <footer className="overflow-x-hidden relative bg-primary px-4 pb-8 pt-28 text-secondary sm:px-8">
       <div className="section-container relative rounded-2xl bg-primary-light pb-12 pt-16">
@@ -53,47 +87,62 @@ const Footer = () => {
           </div>
           <div className="col-span-8 mb-12 bg-primary p-8 shadow-2xl md:col-span-6 md:-mt-32 lg:order-4 lg:col-span-4 relative">
           <div className="absolute w-full top-0 h-1 gradient-color left-0"></div>
-            <form>
+            <form onSubmit={handleSubmit}>
               <h3 className="mb-3 text-2xl font-semibold lg:text-3xl">
                 Get in touch
               </h3>
               <div className="mt-2 flex flex-col gap-3">
                 <input
                   type="text"
-                  id="name"
-                  placeholder="Full Name"
-                  className="border-b border-secondary-light bg-primary p-3 shadow-sm focus:outline-none"
+                  name="name"
+                  placeholder="Name"
+                  required
+                  value={formData.name}
+                  onChange={handleChange}
+                  className="w-full  border-b border-border bg-transparent px-4 py-2 text-secondary outline-none "
                 />
-              </div>
-              <div className="mt-2 flex flex-col gap-3">
                 <input
-                  type="text"
-                  id="email"
+                  type="email"
+                  name="email"
                   placeholder="Email"
-                  className="border-b border-secondary-light bg-primary p-3 shadow-sm focus:outline-none"
+                  required
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="w-full  border-b border-border bg-transparent px-4 py-2 text-secondary outline-none "
                 />
-              </div>
-              <div className="mt-2 flex flex-col gap-3">
                 <input
-                  type="number"
-                  id="number"
-                  placeholder="Phone Number"
-                  className="border-b border-secondary-light bg-primary p-3 shadow-sm focus:outline-none"
+                  type="tel"
+                  name="phone"
+                  placeholder="Phone (optional)"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  className="w-full  border-b border-border bg-transparent px-4 py-2 text-secondary outline-none "
                 />
-              </div>
-              <div className="mt-2 flex flex-col gap-3">
                 <textarea
+                  name="message"
                   placeholder="Message"
-                  type="text"
-                  rows={2}
-                  id="message"
-                  className="border-b border-secondary-light bg-primary p-3 shadow-sm focus:outline-none"
-                />
+                  required
+                  value={formData.message}
+                  onChange={handleChange}
+                  rows={3}
+                  className="w-full  border-b border-border bg-transparent px-4 py-2 text-secondary outline-none "
+                ></textarea>
+                <button
+                  type="submit"
+                  disabled={status.loading}
+                  className={`gradient-color w-full  px-8 py-2 text-white transition-all hover:opacity-90 disabled:opacity-50 ${
+                    status.loading ? "cursor-not-allowed" : "cursor-pointer"
+                  }`}
+                >
+                  {status.loading ? "Sending..." : "Send Message"}
+                </button>
+                {status.error && (
+                  <p className="text-red-500 text-sm mt-2">{status.error}</p>
+                )}
+                {status.success && (
+                  <p className="text-green-500 text-sm mt-2">Message sent successfully!</p>
+                )}
               </div>
-
-              <button className="gradient-color mt-6 w-fit px-4 py-2 text-tertiary-text">
-                Submit
-              </button>
             </form>
           </div>
           <div className="col-span-12 md:col-span-6 sm:text-start lg:order-2 lg:col-span-3">

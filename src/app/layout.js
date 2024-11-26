@@ -5,8 +5,8 @@ import { Poppins } from 'next/font/google'
 import { ThemeProvider } from "@/context/ThemeContext";
 
 export const metadata = {
-  title: "Web development company: Giftechies",
-  description: "Created by Gurkirat Singh",
+  title: "Web Development company in Ludhiana- Giftechies",
+  description: "Giftechies is a leading Web Development company in Ludhiana, offering top-notch digital marketing and IT solutions to help your business thrive online.",
 };
 
 const poppins = Poppins({
