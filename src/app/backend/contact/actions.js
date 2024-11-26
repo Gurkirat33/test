@@ -29,7 +29,7 @@ async function sendEmail(formData) {
 
   const mailOptions = {
     from: process.env.SMTP_USER,
-    to: "gurkiratsingh13a@gmail.com",
+    to: "giftyhunjan@gmail.com, info@giftechies.com",
     subject: `New Contact Form Submission from ${formData.name}`,
     text: emailContent,
     html: `
@@ -48,7 +48,6 @@ async function sendEmail(formData) {
       </div>
     `,
   };
-  console.log(mailOptions);
   await transporter.sendMail(mailOptions);
 }
 
