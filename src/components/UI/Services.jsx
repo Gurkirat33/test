@@ -98,7 +98,7 @@ const ServicesTimeline = () => {
             </div>
               <MoveDown size={40} className="animate-bounce mx-auto mt-4 text-[#d92662]"/>
           </div>
-    <div className="relative h-[85vh] w-full overflow-hidden">
+    <div className="relative h-[70vh] md:h-[85vh] w-full overflow-hidden">
       {/* Right Navigation Section */}
       <div className="absolute bottom-0 right-[3%] xl:right-[9%] top-0 z-20 flex flex-col items-center justify-center">
         <div className="absolute left-0 h-full w-px bg-white/30" />

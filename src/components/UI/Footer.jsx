@@ -7,7 +7,7 @@ import {
   socialLinks,
   UsaFlagSvg,
 } from "../data/FooterData";
-import { Heart, Mail, PhoneCall } from "lucide-react";
+import { Heart, Mail, MessageCircle, PhoneCall } from "lucide-react";
 import { ThemeImage } from "./ThemeImage";
 import Image from "next/image";
 
@@ -52,7 +52,7 @@ const Footer = () => {
             </div>
           </div>
           <div className="col-span-8 mb-12 bg-primary p-8 shadow-2xl md:col-span-6 md:-mt-32 lg:order-4 lg:col-span-4 relative">
-          {/* <div className="absolute w-full top-0 h-1 gradient-color left-0"></div> */}
+          <div className="absolute w-full top-0 h-1 gradient-color left-0"></div>
             <form>
               <h3 className="mb-3 text-2xl font-semibold lg:text-3xl">
                 Get in touch
@@ -148,7 +148,7 @@ const Footer = () => {
             </div>
           </div>
           <div className="mt-8 flex w-full flex-1 flex-col gap-3 sm:flex-row sm:pl-14 lg:mt-0 lg:w-fit lg:flex-none lg:pl-4 xl:gap-12 text-secondary-light">
-            <div className="flex flex-1 flex-col items-center gap-2 sm:items-start lg:items-start">
+            <div className="flex flex-1 flex-col  gap-2 sm:items-start lg:items-start">
               <div className="flex items-center gap-3">
                 <IndiaFlagSvg />
                 <p>+91 95920 00818</p>
@@ -158,14 +158,14 @@ const Footer = () => {
                 <p>+1 (630) 523-0006</p>
               </div>
             </div>
-            <div className="flex flex-1 flex-col items-center gap-4 sm:items-start">
+            <div className="flex flex-1 flex-col  gap-4 sm:items-start">
               <div className="flex items-center gap-3">
                 <Mail className="text-[#d92662]" size={20}/>
                 <p> info@giftechies.com</p>
               </div>
               <div className="flex gap-2">
-                <PhoneCall className="text-[#d92662]" size={20}/>
-                <p>skype.com</p>
+                <MessageCircle className="text-[#d92662]" size={20}/>
+                <p>giftechies</p>
               </div>
             </div>
           </div>
