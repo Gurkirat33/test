@@ -23,18 +23,14 @@ export async function submitContactForm(formData) {
   }
 }
 
-export async function getContacts(page = 1, limit = 10) {
+export async function getContacts() {
   try {
     await getDbConnection();
     
     const contacts = await contactModel
       .find({})
       .sort({ createdAt: -1 })
-      .skip((page - 1) * limit)
-      .limit(limit)
       .lean();
-
-    const total = await contactModel.countDocuments();
 
     return {
       contacts: contacts.map(contact => ({
@@ -43,11 +39,8 @@ export async function getContacts(page = 1, limit = 10) {
         email: contact.email,
         phone: contact.phone,
         message: contact.message,
-        status: contact.status,
         createdAt: contact.createdAt,
-      })),
-      total,
-      pages: Math.ceil(total / limit),
+      }))
     };
   } catch (error) {
     console.error("Error fetching contacts:", error);

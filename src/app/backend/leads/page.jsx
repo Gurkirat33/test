@@ -6,18 +6,15 @@ import { getContacts } from "../contact/actions";
 const LeadsPage = () => {
   const [leads, setLeads] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
     fetchLeads();
-  }, [currentPage]);
+  }, []);
 
   const fetchLeads = async () => {
     try {
-      const result = await getContacts(currentPage, 10);
+      const result = await getContacts();
       setLeads(result.contacts);
-      setTotalPages(result.pages);
     } catch (error) {
       console.error("Error fetching leads:", error);
     } finally {
@@ -105,28 +102,6 @@ const LeadsPage = () => {
       {leads.length === 0 && (
         <div className="mt-8 text-center text-gray-500">
           No leads found.
-        </div>
-      )}
-
-      {totalPages > 1 && (
-        <div className="mt-4 flex justify-center space-x-2">
-          <button
-            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-            disabled={currentPage === 1}
-            className="rounded-lg border px-4 py-2 text-sm disabled:opacity-50"
-          >
-            Previous
-          </button>
-          <span className="flex items-center">
-            Page {currentPage} of {totalPages}
-          </span>
-          <button
-            onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
-            disabled={currentPage === totalPages}
-            className="rounded-lg border px-4 py-2 text-sm disabled:opacity-50"
-          >
-            Next
-          </button>
         </div>
       )}
     </div>

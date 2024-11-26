@@ -3,20 +3,37 @@
 import { useState } from "react";
 import { PhoneCall, X } from "lucide-react";
 import Image from "next/image";
+import { submitContactForm } from "@/app/backend/contact/actions";
 
 export const CallButton = () => {
     const [openModal, setOpenModal] = useState(false);
     const [formData, setFormData] = useState({
         name: "",
+        email: "",
         phone: "",
-        message: ""
+        message: "Requesting a call back"
     });
+    const [status, setStatus] = useState({ loading: false, error: null, success: false });
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("Form submitted:", formData);
-        setOpenModal(false);
-        setFormData({ name: "", phone: "", message: "" });
+        setStatus({ loading: true, error: null, success: false });
+
+        try {
+            const result = await submitContactForm(formData);
+            if (result.success) {
+                setStatus({ loading: false, error: null, success: true });
+                setFormData({ name: "", email: "", phone: "", message: "Requesting a call back" });
+                setTimeout(() => {
+                    setStatus(prev => ({ ...prev, success: false }));
+                    setOpenModal(false);
+                }, 2000);
+            } else {
+                setStatus({ loading: false, error: result.error || "Failed to submit", success: false });
+            }
+        } catch (error) {
+            setStatus({ loading: false, error: "Something went wrong", success: false });
+        }
     };
 
     return (
@@ -41,8 +58,8 @@ export const CallButton = () => {
                         <div className="flex flex-col md:flex-row h-[600px]">
                             <div className="w-full md:w-1/2 relative">
                                 <Image
-                                width={400}
-                                height={400}
+                                    width={400}
+                                    height={400}
                                     src="/about1.jpeg" 
                                     alt="Contact" 
                                     className="w-full h-full object-cover"
@@ -54,9 +71,9 @@ export const CallButton = () => {
                                     <h3 className="text-2xl font-bold mb-6 text-black">Request a Call Back</h3>
                                     <form onSubmit={handleSubmit} className="space-y-6">
                                         <div>
-                                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                                            {/* <label className="block text-sm font-medium text-gray-700 mb-2">
                                                 Your Name
-                                            </label>
+                                            </label> */}
                                             <input
                                                 type="text"
                                                 required
@@ -67,9 +84,22 @@ export const CallButton = () => {
                                             />
                                         </div>
                                         <div>
-                                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                                            {/* <label className="block text-sm font-medium text-gray-700 mb-2">
+                                                Email Address
+                                            </label> */}
+                                            <input
+                                                type="email"
+                                                required
+                                                value={formData.email}
+                                                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                                className="text-black w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                                                placeholder="Enter your email"
+                                            />
+                                        </div>
+                                        <div>
+                                            {/* <label className="block text-sm font-medium text-gray-700 mb-2">
                                                 Phone Number
-                                            </label>
+                                            </label> */}
                                             <input
                                                 type="tel"
                                                 required
@@ -80,9 +110,9 @@ export const CallButton = () => {
                                             />
                                         </div>
                                         <div>
-                                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                                            {/* <label className="block text-sm font-medium text-gray-700 mb-2">
                                                 Message
-                                            </label>
+                                            </label> */}
                                             <textarea
                                                 value={formData.message}
                                                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
@@ -93,10 +123,19 @@ export const CallButton = () => {
                                         </div>
                                         <button
                                             type="submit"
-                                            className="w-full text-white py-3 px-6 gradient-color hover:opacity-90 transition-opacity font-medium text-lg"
+                                            disabled={status.loading}
+                                            className="w-full text-white py-3 px-6 gradient-color hover:opacity-90 transition-opacity font-medium text-lg disabled:opacity-50"
                                         >
-                                            Submit Request
+                                            {status.loading ? "Submitting..." : "Submit Request"}
                                         </button>
+                                        {status.error && (
+                                            <p className="text-sm text-red-500 text-center">{status.error}</p>
+                                        )}
+                                        {status.success && (
+                                            <p className="text-sm text-green-500 text-center">
+                                                Request submitted successfully!
+                                            </p>
+                                        )}
                                     </form>
                                 </div>
                             </div>

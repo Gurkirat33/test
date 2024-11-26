@@ -1,10 +1,9 @@
 "use client"
 
-import React from "react";
+import React, { useState } from "react";
 import { Phone, Mail, MapPin } from "lucide-react";
 import Breadcrumb from "@/components/UI/Breadcrumb";
-import { useReCaptcha } from "next-recaptcha-v3";
-
+import { submitContactForm } from "@/app/backend/contact/actions";
 
 const contactData = [
   {
@@ -24,10 +23,40 @@ const contactData = [
   },
 ];
 
-const ContactPage = () => {
-  const { executeRecaptcha } = useReCaptcha();
+const ContactPage = () => {  
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: ""
+  });
+  const [status, setStatus] = useState({ loading: false, error: null, success: false });
 
-  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus({ loading: true, error: null, success: false });
+
+    try {
+      const result = await submitContactForm(formData);
+      if (result.success) {
+        setStatus({ loading: false, error: null, success: true });
+        setFormData({ name: "", email: "", phone: "", message: "" });
+        setTimeout(() => {
+          setStatus(prev => ({ ...prev, success: false }));
+        }, 3000);
+      } else {
+        setStatus({ loading: false, error: result.error || "Failed to submit", success: false });
+      }
+    } catch (error) {
+      setStatus({ loading: false, error: "Something went wrong", success: false });
+    }
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
   return (
     <>
     <div className="pt-[72px]">
@@ -65,47 +94,71 @@ const ContactPage = () => {
         </div>
 
         <div className="rounded-lg bg-primary-light p-8">
-          <form>
+          <form onSubmit={handleSubmit}>
             <h3 className="mb-3 text-2xl font-semibold text-secondary lg:text-3xl">
               Get in touch
             </h3>
             <div className="mt-5 flex flex-col gap-3">
               <input
                 type="text"
-                id="name"
+                name="name"
                 placeholder="Full Name"
+                required
+                value={formData.name}
+                onChange={handleChange}
                 className="rounded-lg border border-border bg-primary p-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-secondary-light"
               />
             </div>
             <div className="mt-5 flex flex-col gap-3">
               <input
-                type="text"
-                id="email"
+                type="email"
+                name="email"
                 placeholder="Email"
+                required
+                value={formData.email}
+                onChange={handleChange}
                 className="rounded-lg border border-border bg-primary p-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-secondary-light"
               />
             </div>
             <div className="mt-5 flex flex-col gap-3">
               <input
-                type="number"
-                id="number"
+                type="tel"
+                name="phone"
                 placeholder="Phone Number"
+                required
+                value={formData.phone}
+                onChange={handleChange}
                 className="rounded-lg border border-border bg-primary p-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-secondary-light"
               />
             </div>
             <div className="mt-5 flex flex-col gap-3">
               <textarea
                 placeholder="Write Your Requirements"
-                type="text"
+                name="message"
                 rows={4}
-                id="message"
+                required
+                value={formData.message}
+                onChange={handleChange}
                 className="rounded-lg border border-border bg-primary p-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-secondary-light"
               />
             </div>
 
-            <button className="gradient-color mt-6 w-fit  px-4 py-2 text-tertiary-text">
-              Submit
+            <button 
+              type="submit"
+              disabled={status.loading}
+              className={`gradient-color mt-6 w-fit px-4 py-2 text-tertiary-text transition-opacity ${
+                status.loading ? "opacity-50 cursor-not-allowed" : "hover:opacity-90"
+              }`}
+            >
+              {status.loading ? "Sending..." : "Submit"}
             </button>
+
+            {status.error && (
+              <p className="mt-4 text-sm text-red-500">{status.error}</p>
+            )}
+            {status.success && (
+              <p className="mt-4 text-sm text-green-500">Message sent successfully!</p>
+            )}
           </form>
         </div>
       </div>
