@@ -9,14 +9,13 @@ export function ThemeProvider({ children }) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const initializeTheme = async () => {
+    const initializeTheme = () => {
       try {
-        const storedTheme = await Promise.resolve(localStorage.getItem('theme') || 'light');
+        const storedTheme = localStorage.getItem('theme') || 'light';
         setTheme(storedTheme);
         document.documentElement.classList.add(storedTheme);
       } catch (error) {
         console.error('Error initializing theme:', error);
-        // Fallback to light theme if there's an error
         setTheme('light');
         document.documentElement.classList.add('light');
       } finally {
@@ -27,11 +26,11 @@ export function ThemeProvider({ children }) {
     initializeTheme();
   }, []);
 
-  const toggleTheme = async () => {
+  const toggleTheme = () => {
     try {
       const newTheme = theme === 'light' ? 'dark' : 'light';
       setTheme(newTheme);
-      await Promise.resolve(localStorage.setItem('theme', newTheme));
+      localStorage.setItem('theme', newTheme);
       document.documentElement.classList.remove('light', 'dark');
       document.documentElement.classList.add(newTheme);
     } catch (error) {
