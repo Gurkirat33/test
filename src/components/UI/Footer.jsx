@@ -213,7 +213,8 @@ const Footer = () => {
                 <p> info@giftechies.com</p>
               </Link>
               <Link href="https:/wa.me/9592000818" className="flex gap-2">
-                <MessageCircle className="text-[#d92662]" size={20}/>
+                {/* <MessageCircle className="text-[#d92662]" size={20}/> */}
+                <Image src={"/whatsapp.svg"} width={20} height={20} alt="whatsapp" />
                 <p>giftechies</p>
               </Link>
             </div>
