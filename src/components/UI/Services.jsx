@@ -163,7 +163,7 @@ const ServicesTimeline = () => {
           <SwiperSlide key={service.id}>
             <div className="relative h-full w-full">
               <div className="absolute bg-black md:bg-transparent inset-0 z-10 md:bg-gradient-to-r md:from-black/60 md:via-black/10 md:to-black/60" />
-              <div className="absolute z-40 inset-0">
+              <div className="md:hidden absolute z-40 inset-0">
             <BgGrid />
               </div>
               <Image

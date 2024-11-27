@@ -58,7 +58,7 @@ export default function BentoGrid() {
               className={`${getGridClasses(index)} relative rounded-lg bg-primary px-8 py-7 shadow-xl`}
             >
               {item.icon && <item.icon size={26} className="text-red-500" />}
-              <h3 className="my-3 text-xl font-medium">{item.title}</h3>
+              <Link href={item.link} className="block my-3 text-xl font-medium hover:gradient-color-text duration-300 transition">{item.title}</Link>
               <p className="description-text text-[14px]">
                 {item.description}
               </p>

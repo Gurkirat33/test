@@ -77,12 +77,12 @@ const Footer = () => {
             <h4 className="text-2xl mb-6 text-secondary-light">Ready? Let’s Talk
             </h4>
             <div className="flex gap-4">
-            <button className="gradient-color w-fit  px-4 py-2 text-tertiary-text">
+            <Link href={"/contact"} className="gradient-color w-fit  px-4 py-2 text-tertiary-text">
             Hire Me !
-            </button>
-            <button className="w-fit border border-border bg-primary  px-4 py-2 text-secondary">
+            </Link>
+            <Link href={"/portfolio"} className="w-fit border border-border bg-primary  px-4 py-2 text-secondary">
             Best Work
-            </button>
+            </Link>
             </div>
           </div>
           <div className="col-span-8 mb-12 bg-primary p-8 shadow-2xl md:col-span-6 md:-mt-32 lg:order-4 lg:col-span-4 relative">
@@ -198,24 +198,24 @@ const Footer = () => {
           </div>
           <div className="mt-8 flex w-full flex-1 flex-col gap-3 sm:flex-row sm:pl-14 lg:mt-0 lg:w-fit lg:flex-none lg:pl-4 xl:gap-12 text-secondary-light">
             <div className="flex flex-1 flex-col  gap-2 sm:items-start lg:items-start">
-              <div className="flex items-center gap-3">
+              <Link href="tel:+91 95920 00818" className="flex items-center gap-3">
                 <IndiaFlagSvg />
                 <p>+91 95920 00818</p>
-              </div>
-              <div className="flex items-center gap-3">
+              </Link>
+              <Link href="tel:+1 (630) 523-0006" className="flex items-center gap-3">
                 <UsaFlagSvg />
                 <p>+1 (630) 523-0006</p>
-              </div>
+              </Link>
             </div>
             <div className="flex flex-1 flex-col  gap-4 sm:items-start">
-              <div className="flex items-center gap-3">
+              <Link href="mailto:info@giftechies.com" className="flex items-center gap-3">
                 <Mail className="text-[#d92662]" size={20}/>
                 <p> info@giftechies.com</p>
-              </div>
-              <div className="flex gap-2">
+              </Link>
+              <Link href="https:/wa.me/9592000818" className="flex gap-2">
                 <MessageCircle className="text-[#d92662]" size={20}/>
                 <p>giftechies</p>
-              </div>
+              </Link>
             </div>
           </div>
         </div>
