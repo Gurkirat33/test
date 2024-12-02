@@ -9,6 +9,7 @@ export default function Sidebar() {
     { name: "Services", icon: BarChart2, path: "/backend/services" },
     { name: "Portfolio", icon: Users, path: "/backend/portfolio" },
     { name: "Team Section", icon: Users, path: "/backend/team" },
+    { name: "Testimonials", icon: Users, path: "/backend/testimonials" },
     { name: "Leads", icon: Users, path: "/backend/leads" },
   ];
 

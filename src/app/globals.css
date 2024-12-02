@@ -169,4 +169,22 @@
   .custom-image-1 {
     background-image: url("/about1.jpeg");
   }
+
+  @keyframes slide {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-slide {
+    animation: slide var(--speed, 35s) linear infinite;
+    will-change: transform;
+  }
+
+  .animate-slide:hover {
+    /* Removed hover pause effect */
+  }
 }

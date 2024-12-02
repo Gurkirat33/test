@@ -2,7 +2,7 @@
 
 import { getDbConnection } from "@/lib/auth";
 import serviceModel from "@/models/service.model";
-import { revalidatePath, revalidateTag } from "next/cache";
+import { revalidatePath } from "next/cache";
 
 const serializeService = (service) => {
   const serialized = {

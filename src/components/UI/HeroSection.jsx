@@ -2,13 +2,15 @@ import { getHeroSection } from "@/app/backend/hero-section/actions";
 import HeroSectionClient from "./HeroSectionClient";
 import BrowserForImages from "./Browsers/BrowserForImages";
 
+export const revalidate = 3600;
+
 async function getHeroData() {
   const data = await getHeroSection();
   return data.map(hero => ({
     ...hero,
     _id: hero._id.toString()
   }));
-}
+} 
 
 export default async function HeroSection() {
   const heroData = await getHeroData();
