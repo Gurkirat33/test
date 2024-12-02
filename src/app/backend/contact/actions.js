@@ -51,25 +51,60 @@ async function sendEmail(formData) {
   await transporter.sendMail(mailOptions);
 }
 
-export async function submitContactForm(formData) {
+const validateForm = (data) => {
+  const errors = [];
+  
+  if (!data.name?.trim()) {
+    errors.push("Name is required");
+  }
+  
+  if (!data.email?.trim()) {
+    errors.push("Email is required");
+  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+    errors.push("Invalid email format");
+  }
+  
+  if (!data.message?.trim()) {
+    errors.push("Message is required");
+  }
+  
+  return errors;
+};
+
+export async function submitContactForm(prevState, formData) {
   try {
+    const data = {
+      name: formData.get("name"),
+      email: formData.get("email"),
+      phone: formData.get("phone"),
+      message: formData.get("message"),
+    };
+
+    const errors = validateForm(data);
+    if (errors.length > 0) {
+      return {
+        message: errors.join(", "),
+        success: false,
+      };
+    }
+
     await getDbConnection();
+    const contact = await contactModel.create(data);
 
-    const contact = await contactModel.create({
-      name: formData.name,
-      email: formData.email,
-      phone: formData.phone || "",
-      message: formData.message,
-    });
-
-    await sendEmail(formData);
+    await sendEmail(data);
 
     revalidatePath("/backend/leads");
     
-    return { success: true };
+    return {
+      message: "Message sent successfully!",
+      success: true,
+    };
   } catch (error) {
     console.error("Error submitting contact form:", error);
-    return { success: false, error: error.message };
+    return {
+      message: "Failed to send message. Please try again.",
+      success: false,
+    };
   }
 }
 

@@ -1,10 +1,11 @@
 "use client"
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Phone, Mail, MapPin } from "lucide-react";
 import Breadcrumb from "@/components/UI/Breadcrumb";
 import { submitContactForm } from "@/app/backend/contact/actions";
 import Link from "next/link";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const contactData = [
   {
@@ -32,9 +33,15 @@ const ContactPage = () => {
     message: ""
   });
   const [status, setStatus] = useState({ loading: false, error: null, success: false });
+  const recaptchaRef = useRef(null);
+  const [isVerified, setIsVerified] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!isVerified) {
+      alert("Please verify that you are not a robot");
+      return;
+    }
     setStatus({ loading: true, error: null, success: false });
 
     try {
@@ -42,6 +49,8 @@ const ContactPage = () => {
       if (result.success) {
         setStatus({ loading: false, error: null, success: true });
         setFormData({ name: "", email: "", phone: "", message: "" });
+        recaptchaRef.current.reset();
+        setIsVerified(false);
         setTimeout(() => {
           setStatus(prev => ({ ...prev, success: false }));
         }, 3000);
@@ -56,6 +65,12 @@ const ContactPage = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const onReCAPTCHAChange = (captchaCode) => {
+    if (captchaCode) {
+      setIsVerified(true);
+    }
   };
 
   return (
@@ -78,19 +93,6 @@ const ContactPage = () => {
           </div>
 
           <div className="space-y-6">
-            {/* {contactData.map((item, index) => (
-              <div className="flex items-center space-x-4  max-w-xl" key={index}>
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary-light">
-                  <item.icon className="h-5 w-5 text-secondary" />
-                </div>
-                <div>
-                  <div className="text-sm text-secondary-light">
-                    {item.text}
-                  </div>
-                  <div className="text-secondary">{item.description}</div>
-                </div>
-              </div>
-            ))} */}
             <div className="flex items-center space-x-4  max-w-xl">
                 <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary-light">
                   <Phone className="h-5 w-5 text-secondary" />
@@ -177,9 +179,19 @@ const ContactPage = () => {
               />
             </div>
 
+            <div className="mt-4">
+              <ReCAPTCHA
+                ref={recaptchaRef}
+                sitekey="6LcQ8o8qAAAAANoMwCM3UTRH4DVBrHWo4CKR06Qd"
+                size="normal"
+                onChange={onReCAPTCHAChange}
+                theme="dark"
+              />
+            </div>
+
             <button 
               type="submit"
-              disabled={status.loading}
+              disabled={status.loading || !isVerified}
               className={`gradient-color mt-6 w-fit px-4 py-2 text-tertiary-text transition-opacity ${
                 status.loading ? "opacity-50 cursor-not-allowed" : "hover:opacity-90"
               }`}
