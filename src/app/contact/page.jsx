@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Phone, Mail, MapPin } from "lucide-react";
 import Breadcrumb from "@/components/UI/Breadcrumb";
 import { submitContactForm } from "@/app/backend/contact/actions";
+import Link from "next/link";
 
 const contactData = [
   {
@@ -77,7 +78,7 @@ const ContactPage = () => {
           </div>
 
           <div className="space-y-6">
-            {contactData.map((item, index) => (
+            {/* {contactData.map((item, index) => (
               <div className="flex items-center space-x-4  max-w-xl" key={index}>
                 <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary-light">
                   <item.icon className="h-5 w-5 text-secondary" />
@@ -89,7 +90,40 @@ const ContactPage = () => {
                   <div className="text-secondary">{item.description}</div>
                 </div>
               </div>
-            ))}
+            ))} */}
+            <div className="flex items-center space-x-4  max-w-xl">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary-light">
+                  <Phone className="h-5 w-5 text-secondary" />
+                </div>
+                <div>
+                  <div className="text-sm text-secondary-light">
+                    Phone
+                  </div>
+                  <Link className="text-secondary" href={"tel:+91 95920 00818"}>+91 95920 00818</Link>
+                </div>
+              </div>
+            <div className="flex items-center space-x-4  max-w-xl">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary-light">
+                  <Mail className="h-5 w-5 text-secondary" />
+                </div>
+                <div>
+                  <div className="text-sm text-secondary-light">
+                    Email
+                  </div>
+                  <Link className="text-secondary" href={"mailto:info@giftechies.com"}>info@giftechies.com</Link>
+                </div>
+              </div>
+            <div className="flex items-center space-x-4  max-w-xl">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary-light">
+                  <MapPin className="h-5 w-5 text-secondary" />
+                </div>
+                <div>
+                  <div className="text-sm text-secondary-light">
+                    Address
+                  </div>
+                  <Link className="text-secondary" target="_blank" href={"https://www.google.com/maps?q=PC Tower 2nd Floor, Gill Rd, Opposite GNE College, Ludhiana 141006"}>PC Tower 2nd Floor, Gill Rd, Opposite GNE College, Ludhiana 141006 - INDIA</Link>
+                </div>
+              </div>
           </div>
         </div>
 
