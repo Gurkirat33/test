@@ -13,12 +13,12 @@ import { ThemeImage } from "./ThemeImage";
 import Image from "next/image";
 import { submitContactForm } from "@/app/backend/contact/actions";
 import Link from "next/link";
-import dynamic from "next/dynamic";
+// import dynamic from "next/dynamic";
 
-const ReCAPTCHA = dynamic(() => import("react-google-recaptcha"), {
-  ssr: false,
-  loading: () => <div className="h-[78px] w-[304px] animate-pulse bg-secondary/5 rounded"></div>
-});
+// const ReCAPTCHA = dynamic(() => import("react-google-recaptcha"), {
+//   ssr: false,
+//   loading: () => <div className="h-[78px] w-[304px] animate-pulse bg-secondary/5 rounded"></div>
+// });
 
 const Footer = () => {
   const date = new Date().getFullYear();
@@ -29,15 +29,15 @@ const Footer = () => {
     message: "",
   });
   const [status, setStatus] = useState({ loading: false, error: null, success: false });
-  const [isVerified, setIsVerified] = useState(false);
-  const recaptchaRef = useRef(null);
-
-  const onReCAPTCHAChange = (value) => {
-    setIsVerified(value !== null);
-  };
+  // const recaptchaRef = useRef(null);
+  // const [isVerified, setIsVerified] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // if (!isVerified) {
+    //   alert("Please verify that you are not a robot");
+    //   return;
+    // }
     setStatus({ loading: true, error: null, success: false });
 
     try {
@@ -45,6 +45,8 @@ const Footer = () => {
       if (result.success) {
         setStatus({ loading: false, error: null, success: true });
         setFormData({ name: "", email: "", phone: "", message: "" });
+        // recaptchaRef.current.reset();
+        // setIsVerified(false);
         setTimeout(() => setStatus(prev => ({ ...prev, success: false })), 6000);
       } else {
         setStatus({ loading: false, error: result.error || "Failed to submit form", success: false });
@@ -58,6 +60,12 @@ const Footer = () => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
+
+  // const onReCAPTCHAChange = (captchaCode) => {
+  //   if (captchaCode) {
+  //     setIsVerified(true);
+  //   }
+  // };
 
   return (
     <footer className="overflow-x-hidden relative bg-primary px-4 pb-8 pt-28 text-secondary sm:px-8">
@@ -139,7 +147,8 @@ const Footer = () => {
                   rows={3}
                   className="w-full  border-b border-border bg-transparent px-4 py-2 text-secondary outline-none "
                 ></textarea>
-                <div className="mt-4">
+                {/* ReCAPTCHA Component */}
+                {/* <div className="mt-4">
                   <Suspense fallback={<div className="h-[78px] w-[304px] animate-pulse bg-secondary/5 rounded"></div>}>
                     <ReCAPTCHA
                       ref={recaptchaRef}
@@ -148,12 +157,12 @@ const Footer = () => {
                       onChange={onReCAPTCHAChange}
                     />
                   </Suspense>
-                </div>
+                </div> */}
                 <button
                   type="submit"
-                  disabled={status.loading || !isVerified}
+                  disabled={status.loading}
                   className={`gradient-color w-full  px-8 py-2 text-white transition-all hover:opacity-90 disabled:opacity-50 ${
-                    status.loading || !isVerified ? "cursor-not-allowed" : "cursor-pointer"
+                    status.loading ? "cursor-not-allowed" : "cursor-pointer"
                   }`}
                 >
                   {status.loading ? "Sending..." : "Send Message"}

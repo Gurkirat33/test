@@ -3,12 +3,12 @@
 import { Send } from "lucide-react";
 import { useState, useRef, Suspense } from "react";
 import { submitContactForm } from "@/app/backend/contact/actions";
-import dynamic from "next/dynamic";
+// import dynamic from "next/dynamic";
 
-const ReCAPTCHA = dynamic(() => import("react-google-recaptcha"), {
-  ssr: false,
-  loading: () => <div className="h-[78px] w-[304px] animate-pulse bg-secondary/5 rounded"></div>
-});
+// const ReCAPTCHA = dynamic(() => import("react-google-recaptcha"), {
+//   ssr: false,
+//   loading: () => <div className="h-[78px] w-[304px] animate-pulse bg-secondary/5 rounded"></div>
+// });
 
 export default function ServiceForm() {
     const [formData, setFormData] = useState({
@@ -24,26 +24,26 @@ export default function ServiceForm() {
         success: false
     });
 
-    const recaptchaRef = useRef(null);
-    const [isVerified, setIsVerified] = useState(false);
+    // const recaptchaRef = useRef(null);
+    // const [isVerified, setIsVerified] = useState(false);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
-    const onReCAPTCHAChange = (captchaCode) => {
-        if (captchaCode) {
-            setIsVerified(true);
-        }
-    };
+    // const onReCAPTCHAChange = (captchaCode) => {
+    //     if (captchaCode) {
+    //         setIsVerified(true);
+    //     }
+    // };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!isVerified) {
-            alert("Please verify that you are not a robot");
-            return;
-        }
+        // if (!isVerified) {
+        //     alert("Please verify that you are not a robot");
+        //     return;
+        // }
         setStatus({ loading: true, error: null, success: false });
 
         try {
@@ -51,8 +51,8 @@ export default function ServiceForm() {
             if (result.success) {
                 setStatus({ loading: false, error: null, success: true });
                 setFormData({ name: "", email: "", phone: "", message: "" });
-                recaptchaRef.current.reset();
-                setIsVerified(false);
+                // recaptchaRef.current.reset();
+                // setIsVerified(false);
                 setTimeout(() => {
                     setStatus(prev => ({ ...prev, success: false }));
                 }, 6000);
@@ -124,7 +124,8 @@ export default function ServiceForm() {
                     ></textarea>
                 </div>
 
-                <div className="mt-4">
+                {/* ReCAPTCHA Component */}
+                {/* <div className="mt-4">
                     <Suspense fallback={<div className="h-[78px] w-[304px] animate-pulse bg-secondary/5 rounded"></div>}>
                         <ReCAPTCHA
                             ref={recaptchaRef}
@@ -133,13 +134,13 @@ export default function ServiceForm() {
                             onChange={onReCAPTCHAChange}
                         />
                     </Suspense>
-                </div>
+                </div> */}
 
                 <button
                     type="submit"
-                    disabled={status.loading || !isVerified}
+                    disabled={status.loading}
                     className={`inline-flex items-center justify-center gap-2 gradient-color w-full rounded-lg px-4 py-2.5 text-sm text-white transition-opacity ${
-                        status.loading || !isVerified ? "opacity-50 cursor-not-allowed" : "hover:opacity-90"
+                        status.loading ? "opacity-50 cursor-not-allowed" : "hover:opacity-90"
                     }`}
                 >
                     <Send className="h-5 w-5" />

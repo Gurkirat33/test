@@ -5,12 +5,12 @@ import { Phone, Mail, MapPin } from "lucide-react";
 import Breadcrumb from "@/components/UI/Breadcrumb";
 import { submitContactForm } from "@/app/backend/contact/actions";
 import Link from "next/link";
-import dynamic from "next/dynamic";
+// import dynamic from "next/dynamic";
 
-const ReCAPTCHA = dynamic(() => import("react-google-recaptcha"), {
-  ssr: false,
-  loading: () => <div className="h-[78px] w-[304px] animate-pulse bg-secondary/5 rounded"></div>
-});
+// const ReCAPTCHA = dynamic(() => import("react-google-recaptcha"), {
+//   ssr: false,
+//   loading: () => <div className="h-[78px] w-[304px] animate-pulse bg-secondary/5 rounded"></div>
+// });
 
 const ContactPage = () => {  
   const [formData, setFormData] = useState({
@@ -20,15 +20,15 @@ const ContactPage = () => {
     message: ""
   });
   const [status, setStatus] = useState({ loading: false, error: null, success: false });
-  const recaptchaRef = useRef(null);
-  const [isVerified, setIsVerified] = useState(false);
+  // const recaptchaRef = useRef(null);
+  // const [isVerified, setIsVerified] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!isVerified) {
-      alert("Please verify that you are not a robot");
-      return;
-    }
+    // if (!isVerified) {
+    //   alert("Please verify that you are not a robot");
+    //   return;
+    // }
     setStatus({ loading: true, error: null, success: false });
 
     try {
@@ -36,8 +36,8 @@ const ContactPage = () => {
       if (result.success) {
         setStatus({ loading: false, error: null, success: true });
         setFormData({ name: "", email: "", phone: "", message: "" });
-        recaptchaRef.current.reset();
-        setIsVerified(false);
+        // recaptchaRef.current.reset();
+        // setIsVerified(false);
         setTimeout(() => {
           setStatus(prev => ({ ...prev, success: false }));
         }, 6000);
@@ -54,11 +54,11 @@ const ContactPage = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const onReCAPTCHAChange = (captchaCode) => {
-    if (captchaCode) {
-      setIsVerified(true);
-    }
-  };
+  // const onReCAPTCHAChange = (captchaCode) => {
+  //   if (captchaCode) {
+  //     setIsVerified(true);
+  //   }
+  // };
 
   return (
     <>
@@ -167,7 +167,7 @@ const ContactPage = () => {
             </div>
 
             {/* ReCAPTCHA Component */}
-            <div className="mt-4">
+            {/* <div className="mt-4">
               <Suspense fallback={<div className="h-[78px] w-[304px] animate-pulse bg-secondary/5 rounded"></div>}>
                 <ReCAPTCHA
                   ref={recaptchaRef}
@@ -176,7 +176,7 @@ const ContactPage = () => {
                   onChange={onReCAPTCHAChange}
                 />
               </Suspense>
-            </div>
+            </div> */}
 
             <button 
               type="submit"
