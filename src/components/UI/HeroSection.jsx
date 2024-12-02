@@ -2,7 +2,7 @@ import { getHeroSection } from "@/app/backend/hero-section/actions";
 import HeroSectionClient from "./HeroSectionClient";
 import BrowserForImages from "./Browsers/BrowserForImages";
 
-export const revalidate = 3600;
+export const revalidate = 2592000;
 
 async function getHeroData() {
   const data = await getHeroSection();

@@ -146,10 +146,10 @@ const Footer = () => {
             </form>
           </div>
           <div className="col-span-12 md:col-span-6 sm:text-start lg:order-2 lg:col-span-3">
-            <h3 className="mb-3 text-base font-semibold">Services</h3>
+            <h3 className="mb-3  font-semibold">Services</h3>
             <ul className="space-y-2 text-secondary-light">
               {links1.map((link) => (
-                <li key={link.name}>
+                <li key={link.name} className="description-text ">
                   <Link href={link.href}>{link.name}</Link>
                 </li>
               ))}
@@ -157,10 +157,10 @@ const Footer = () => {
           </div>
 
           <div className="col-span-12 md:col-span-6 sm:text-start lg:order-3 lg:col-span-2">
-            <h3 className="mb-3 text-base font-semibold">Services</h3>
+            <h3 className="mb-3  font-semibold text-primary-light pointer-events-none select-none">Services</h3>
             <ul className="space-y-2 text-secondary-light">
               {links2.map((link) => (
-                <li key={link.name}>
+                <li key={link.name} className="description-text">
                   <Link href={link.href}>{link.name}</Link>
                 </li>
               ))}

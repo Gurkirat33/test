@@ -1,6 +1,28 @@
 import React from "react";
-import { testimonials } from "../data/TestimonialsData";
 import Image from "next/image";
+import { getDbConnection } from "@/lib/auth";
+import testimonialModel from "@/models/testimonials.model";
+
+export const revalidate = 2592000;
+
+const serializeTestimonials = (testimonials) => ({
+  id: testimonials._id.toString(),
+  image: testimonials.image || "",
+  name: testimonials.name || "",
+  location: testimonials.location || "",
+  content: testimonials.content || "",
+});
+
+async function getTestimonials() {
+  try {
+    await getDbConnection();
+    const testimonials = await testimonialModel.find({}).lean();
+    return testimonials.map(serializeTestimonials);
+  } catch (error) {
+    console.error("Error fetching testimonials:", error);
+    return [];
+  }
+}
 
 const TestimonialCard = ({ testimonial }) => (
   <div className="group relative flex-shrink-0 w-[350px] md:w-[400px] rounded-lg bg-primary-light overflow-hidden">
@@ -64,7 +86,8 @@ const InfiniteSlider = ({ items, direction = "left", speed = 35, className = "" 
   );
 };
 
-const TestimonialsSection = () => {
+async function TestimonialsSection() {
+  const testimonials = await getTestimonials();
   return (
     <div className="relative py-12 overflow-hidden bg-primary">
        <div className="relative inline-block text-center w-full p-12">
@@ -84,9 +107,9 @@ const TestimonialsSection = () => {
     </div>
   </div>
       <div className="flex flex-col gap-6">
-        <InfiniteSlider items={testimonials[0]} speed={50} direction="left" />
-        <InfiniteSlider items={testimonials[1]} speed={40} direction="right" className="" />
-        {/* <InfiniteSlider items={testimonials[2]} speed={50} direction="left" /> */}
+        {console.log(testimonials)}
+        <InfiniteSlider items={[testimonials[0],testimonials[1],testimonials[2],testimonials[3]]} speed={50} direction="left" />
+        <InfiniteSlider items={[testimonials[4],testimonials[5],testimonials[6],testimonials[7]]} speed={40} direction="right" className="" />
       </div>
     </div>
   );
