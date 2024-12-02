@@ -140,7 +140,6 @@ const Footer = () => {
                     sitekey="6LcQ8o8qAAAAANoMwCM3UTRH4DVBrHWo4CKR06Qd"
                     size="normal"
                     onChange={onReCAPTCHAChange}
-                    theme="dark"
                   />
                 </div>
                 <button

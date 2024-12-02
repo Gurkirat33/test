@@ -1,8 +1,9 @@
 "use client";
 
 import { Send } from "lucide-react";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { submitContactForm } from "@/app/backend/contact/actions";
+import ReCAPTCHA from "react-google-recaptcha";
 
 export default function ServiceForm() {
     const [formData, setFormData] = useState({
@@ -18,13 +19,26 @@ export default function ServiceForm() {
         success: false
     });
 
+    const recaptchaRef = useRef(null);
+    const [isVerified, setIsVerified] = useState(false);
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
+    const onReCAPTCHAChange = (captchaCode) => {
+        if (captchaCode) {
+            setIsVerified(true);
+        }
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (!isVerified) {
+            alert("Please verify that you are not a robot");
+            return;
+        }
         setStatus({ loading: true, error: null, success: false });
 
         try {
@@ -32,9 +46,11 @@ export default function ServiceForm() {
             if (result.success) {
                 setStatus({ loading: false, error: null, success: true });
                 setFormData({ name: "", email: "", phone: "", message: "" });
+                recaptchaRef.current.reset();
+                setIsVerified(false);
                 setTimeout(() => {
                     setStatus(prev => ({ ...prev, success: false }));
-                }, 3000);
+                }, 6000);
             } else {
                 setStatus({ loading: false, error: result.error || "Failed to submit", success: false });
             }
@@ -103,11 +119,20 @@ export default function ServiceForm() {
                     ></textarea>
                 </div>
 
+                <div className="mt-4">
+                    <ReCAPTCHA
+                        ref={recaptchaRef}
+                        sitekey="6LcQ8o8qAAAAANoMwCM3UTRH4DVBrHWo4CKR06Qd"
+                        size="normal"
+                        onChange={onReCAPTCHAChange}
+                    />
+                </div>
+
                 <button
                     type="submit"
-                    disabled={status.loading}
-                    className={`inline-flex items-center  justify-center gap-2 gradient-color w-full rounded-lg px-4 py-2.5 text-sm text-white transition-opacity ${
-                        status.loading ? "opacity-50 cursor-not-allowed" : "hover:opacity-90"
+                    disabled={status.loading || !isVerified}
+                    className={`inline-flex items-center justify-center gap-2 gradient-color w-full rounded-lg px-4 py-2.5 text-sm text-white transition-opacity ${
+                        status.loading || !isVerified ? "opacity-50 cursor-not-allowed" : "hover:opacity-90"
                     }`}
                 >
                     <Send className="h-5 w-5" />
@@ -118,7 +143,7 @@ export default function ServiceForm() {
                     <p className="text-sm text-red-500 mt-2">{status.error}</p>
                 )}
                 {status.success && (
-                    <p className="text-sm text-green-500 mt-2">Message sent successfully!</p>
+                    <p className="text-sm text-green-500 mt-2">Your Enquiry has been submitted successfully. We will get back to you as soon as possible.</p>
                 )}
             </form>
         </div>
