@@ -1,11 +1,16 @@
 "use client"
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, Suspense } from "react";
 import { Phone, Mail, MapPin } from "lucide-react";
 import Breadcrumb from "@/components/UI/Breadcrumb";
 import { submitContactForm } from "@/app/backend/contact/actions";
 import Link from "next/link";
-import ReCAPTCHA from "react-google-recaptcha";
+import dynamic from "next/dynamic";
+
+const ReCAPTCHA = dynamic(() => import("react-google-recaptcha"), {
+  ssr: false,
+  loading: () => <div className="h-[78px] w-[304px] animate-pulse bg-secondary/5 rounded"></div>
+});
 
 const ContactPage = () => {  
   const [formData, setFormData] = useState({
@@ -163,12 +168,14 @@ const ContactPage = () => {
 
             {/* ReCAPTCHA Component */}
             <div className="mt-4">
-              <ReCAPTCHA
-                ref={recaptchaRef}
-                sitekey="6LcQ8o8qAAAAANoMwCM3UTRH4DVBrHWo4CKR06Qd"
-                size="normal"
-                onChange={onReCAPTCHAChange}
-              />
+              <Suspense fallback={<div className="h-[78px] w-[304px] animate-pulse bg-secondary/5 rounded"></div>}>
+                <ReCAPTCHA
+                  ref={recaptchaRef}
+                  sitekey="6LcQ8o8qAAAAANoMwCM3UTRH4DVBrHWo4CKR06Qd"
+                  size="normal"
+                  onChange={onReCAPTCHAChange}
+                />
+              </Suspense>
             </div>
 
             <button 

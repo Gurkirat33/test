@@ -1,9 +1,14 @@
 "use client";
 
 import { Send } from "lucide-react";
-import { useState, useRef } from "react";
+import { useState, useRef, Suspense } from "react";
 import { submitContactForm } from "@/app/backend/contact/actions";
-import ReCAPTCHA from "react-google-recaptcha";
+import dynamic from "next/dynamic";
+
+const ReCAPTCHA = dynamic(() => import("react-google-recaptcha"), {
+  ssr: false,
+  loading: () => <div className="h-[78px] w-[304px] animate-pulse bg-secondary/5 rounded"></div>
+});
 
 export default function ServiceForm() {
     const [formData, setFormData] = useState({
@@ -120,12 +125,14 @@ export default function ServiceForm() {
                 </div>
 
                 <div className="mt-4">
-                    <ReCAPTCHA
-                        ref={recaptchaRef}
-                        sitekey="6LcQ8o8qAAAAANoMwCM3UTRH4DVBrHWo4CKR06Qd"
-                        size="normal"
-                        onChange={onReCAPTCHAChange}
-                    />
+                    <Suspense fallback={<div className="h-[78px] w-[304px] animate-pulse bg-secondary/5 rounded"></div>}>
+                        <ReCAPTCHA
+                            ref={recaptchaRef}
+                            sitekey="6LcQ8o8qAAAAANoMwCM3UTRH4DVBrHWo4CKR06Qd"
+                            size="normal"
+                            onChange={onReCAPTCHAChange}
+                        />
+                    </Suspense>
                 </div>
 
                 <button

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef } from "react";
+import { useState, useRef, Suspense } from "react";
 import {
   IndiaFlagSvg,
   links1,
@@ -13,7 +13,12 @@ import { ThemeImage } from "./ThemeImage";
 import Image from "next/image";
 import { submitContactForm } from "@/app/backend/contact/actions";
 import Link from "next/link";
-import ReCAPTCHA from 'react-google-recaptcha';
+import dynamic from "next/dynamic";
+
+const ReCAPTCHA = dynamic(() => import("react-google-recaptcha"), {
+  ssr: false,
+  loading: () => <div className="h-[78px] w-[304px] animate-pulse bg-secondary/5 rounded"></div>
+});
 
 const Footer = () => {
   const date = new Date().getFullYear();
@@ -135,12 +140,14 @@ const Footer = () => {
                   className="w-full  border-b border-border bg-transparent px-4 py-2 text-secondary outline-none "
                 ></textarea>
                 <div className="mt-4">
-                  <ReCAPTCHA
-                    ref={recaptchaRef}
-                    sitekey="6LcQ8o8qAAAAANoMwCM3UTRH4DVBrHWo4CKR06Qd"
-                    size="normal"
-                    onChange={onReCAPTCHAChange}
-                  />
+                  <Suspense fallback={<div className="h-[78px] w-[304px] animate-pulse bg-secondary/5 rounded"></div>}>
+                    <ReCAPTCHA
+                      ref={recaptchaRef}
+                      sitekey="6LcQ8o8qAAAAANoMwCM3UTRH4DVBrHWo4CKR06Qd"
+                      size="normal"
+                      onChange={onReCAPTCHAChange}
+                    />
+                  </Suspense>
                 </div>
                 <button
                   type="submit"
@@ -183,7 +190,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="flex flex-col items-center justify-between pb-8 lg:flex-row lg:px-12 xl:pt-6">
+        <div className="flex flex-col items-center justify-between pb-8 lg:flex-row lg:px-12">
           <div className="flex w-full flex-col gap-3 sm:flex-row sm:pl-14 lg:w-fit lg:gap-8 lg:pl-0">
             <div className="flex flex-1 flex-col md:items-start sm:items-start lg:gap-3 xl:flex-row xl:items-end xl:gap-5">
               <Image
