@@ -27,7 +27,6 @@ const ContactPage = () => {
     setStatus({ loading: true, error: null, success: false });
 
     try {
-      console.log("form submitting")
       const result = await submitContactForm(formData);
       if (result.success) {
         setStatus({ loading: false, error: null, success: true });
@@ -36,7 +35,7 @@ const ContactPage = () => {
         setIsVerified(false);
         setTimeout(() => {
           setStatus(prev => ({ ...prev, success: false }));
-        }, 3000);
+        }, 6000);
       } else {
         setStatus({ loading: false, error: result.error || "Failed to submit", success: false });
       }

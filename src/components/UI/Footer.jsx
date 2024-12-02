@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import {
   IndiaFlagSvg,
   links1,
@@ -13,6 +13,7 @@ import { ThemeImage } from "./ThemeImage";
 import Image from "next/image";
 import { submitContactForm } from "@/app/backend/contact/actions";
 import Link from "next/link";
+import ReCAPTCHA from 'react-google-recaptcha';
 
 const Footer = () => {
   const date = new Date().getFullYear();
@@ -23,6 +24,12 @@ const Footer = () => {
     message: "",
   });
   const [status, setStatus] = useState({ loading: false, error: null, success: false });
+  const [isVerified, setIsVerified] = useState(false);
+  const recaptchaRef = useRef(null);
+
+  const onReCAPTCHAChange = (value) => {
+    setIsVerified(value !== null);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,7 +40,7 @@ const Footer = () => {
       if (result.success) {
         setStatus({ loading: false, error: null, success: true });
         setFormData({ name: "", email: "", phone: "", message: "" });
-        setTimeout(() => setStatus(prev => ({ ...prev, success: false })), 3000);
+        setTimeout(() => setStatus(prev => ({ ...prev, success: false })), 6000);
       } else {
         setStatus({ loading: false, error: result.error || "Failed to submit form", success: false });
       }
@@ -127,11 +134,20 @@ const Footer = () => {
                   rows={3}
                   className="w-full  border-b border-border bg-transparent px-4 py-2 text-secondary outline-none "
                 ></textarea>
+                <div className="mt-4">
+                  <ReCAPTCHA
+                    ref={recaptchaRef}
+                    sitekey="6LcQ8o8qAAAAANoMwCM3UTRH4DVBrHWo4CKR06Qd"
+                    size="normal"
+                    onChange={onReCAPTCHAChange}
+                    theme="dark"
+                  />
+                </div>
                 <button
                   type="submit"
-                  disabled={status.loading}
+                  disabled={status.loading || !isVerified}
                   className={`gradient-color w-full  px-8 py-2 text-white transition-all hover:opacity-90 disabled:opacity-50 ${
-                    status.loading ? "cursor-not-allowed" : "cursor-pointer"
+                    status.loading || !isVerified ? "cursor-not-allowed" : "cursor-pointer"
                   }`}
                 >
                   {status.loading ? "Sending..." : "Send Message"}
@@ -140,7 +156,7 @@ const Footer = () => {
                   <p className="text-red-500 text-sm mt-2">{status.error}</p>
                 )}
                 {status.success && (
-                  <p className="text-green-500 text-sm mt-2">Message sent successfully!</p>
+                  <p className="text-green-500 text-sm mt-2">Your Enquiry has been submitted successfully. We will get back to you as soon as possible.</p>
                 )}
               </div>
             </form>

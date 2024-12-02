@@ -96,7 +96,7 @@ export async function submitContactForm(formData) {
     revalidatePath("/backend/leads");
     
     return {
-      message: "Message sent successfully!",
+      message: "Your Enquiry has been submitted successfully. We will get back to you as soon as possible.",
       success: true,
     };
   } catch (error) {
