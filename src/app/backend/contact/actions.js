@@ -71,13 +71,13 @@ const validateForm = (data) => {
   return errors;
 };
 
-export async function submitContactForm(prevState, formData) {
+export async function submitContactForm(formData) {
   try {
     const data = {
-      name: formData.get("name"),
-      email: formData.get("email"),
-      phone: formData.get("phone"),
-      message: formData.get("message"),
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone || "",
+      message: formData.message,
     };
 
     const errors = validateForm(data);
@@ -89,7 +89,7 @@ export async function submitContactForm(prevState, formData) {
     }
 
     await getDbConnection();
-    const contact = await contactModel.create(data);
+    await contactModel.create(data);
 
     await sendEmail(data);
 

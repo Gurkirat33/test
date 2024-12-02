@@ -7,24 +7,6 @@ import { submitContactForm } from "@/app/backend/contact/actions";
 import Link from "next/link";
 import ReCAPTCHA from "react-google-recaptcha";
 
-const contactData = [
-  {
-    icon: Phone,
-    text: "Phone",
-    description: "+91 95920 00818",
-  },
-  {
-    icon: Mail,
-    text: "Email",
-    description: "info@giftechies.com",
-  },
-  {
-    icon: MapPin,
-    text: "Address",
-    description: "PC Tower 2nd Floor, Gill Rd, Opposite GNE College, Ludhiana 141006 - INDIA",
-  },
-];
-
 const ContactPage = () => {  
   const [formData, setFormData] = useState({
     name: "",
@@ -45,6 +27,7 @@ const ContactPage = () => {
     setStatus({ loading: true, error: null, success: false });
 
     try {
+      console.log("form submitting")
       const result = await submitContactForm(formData);
       if (result.success) {
         setStatus({ loading: false, error: null, success: true });
@@ -179,19 +162,19 @@ const ContactPage = () => {
               />
             </div>
 
+            {/* ReCAPTCHA Component */}
             <div className="mt-4">
               <ReCAPTCHA
                 ref={recaptchaRef}
                 sitekey="6LcQ8o8qAAAAANoMwCM3UTRH4DVBrHWo4CKR06Qd"
                 size="normal"
                 onChange={onReCAPTCHAChange}
-                theme="dark"
               />
             </div>
 
             <button 
               type="submit"
-              disabled={status.loading || !isVerified}
+              disabled={status.loading}
               className={`gradient-color mt-6 w-fit px-4 py-2 text-tertiary-text transition-opacity ${
                 status.loading ? "opacity-50 cursor-not-allowed" : "hover:opacity-90"
               }`}
